@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muhammad Rifqi Haikal — Web3 Security</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { -webkit-font-smoothing: antialiased; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      color: #111;
+      background: #fff;
+      max-width: 800px;
+      margin: 64px auto;
+      padding: 0 40px 80px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* HEADER */
+    .header {
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+      border-bottom: 2px solid #111;
+    }
+
+    .header h1 {
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 2px;
+    }
+
+    .header .sub {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .header .links {
+      font-size: 13px;
+      color: #444;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+
+    .header .links a { color: #444; }
+    .header .links span { margin: 0 8px; color: #bbb; }
+
+    /* SECTION */
+    section { margin-bottom: 32px; }
+
+    section h2 {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #111;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 5px;
+      margin-bottom: 16px;
+    }
+
+    /* SUMMARY */
+    .summary {
+      font-size: 14px;
+      color: #333;
+      font-weight: 300;
+      line-height: 1.75;
+    }
+
+    /* ENTRY */
+    .entry {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 4px;
+    }
+
+    .entry-title { font-size: 15px; font-weight: 600; color: #111; }
+    .entry-date  { font-size: 12px; color: #888; white-space: nowrap; }
+    .entry-sub   { font-size: 13px; color: #666; margin-bottom: 8px; }
+
+    ul {
+      padding-left: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 20px;
+    }
+
+    ul:last-child { margin-bottom: 0; }
+
+    li {
+      font-size: 14px;
+      color: #333;
+      font-weight: 300;
+      line-height: 1.65;
+    }
+
+    li strong { color: #111; font-weight: 600; }
+
+    /* FINDING TAG */
+    .tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 3px;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
+    .tag-medium { background: #fff3cd; color: #7d5a00; border: 1px solid #e8d48b; }
+
+    /* SKILLS */
+    .skill-row {
+      display: flex;
+      gap: 8px;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .skill-label {
+      font-weight: 600;
+      min-width: 130px;
+      flex-shrink: 0;
+      color: #111;
+    }
+
+    .skill-value { color: #444; font-weight: 300; }
+
+    /* CERTS */
+    .cert-list { list-style: disc; }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      body { margin: 32px auto; padding: 0 20px 60px; }
+      .entry { flex-direction: column; gap: 2px; }
+      .skill-row { flex-direction: column; gap: 1px; }
+      .skill-label { min-width: unset; }
+    }
+
+    @media print {
+      body { margin: 0; padding: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>Muhammad Rifqi Haikal</h1>
+    <div class="sub">Web3 Security Researcher · Banjarmasin, Indonesia</div>
+    <div class="links">
+      <a href="mailto:rhaikal91@gmail.com">rhaikal91@gmail.com</a>
+      <span>|</span>
+      <a href="https://github.com/0xnoramiya" target="_blank">github.com/0xnoramiya</a>
+      <span>|</span>
+      <a href="https://ctftime.org/user/242912" target="_blank">ctftime.org/user/242912</a>
+      <span>|</span>
+      <a href="https://blog.kudaliar.id" target="_blank">blog.kudaliar.id</a>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <section>
+    <h2>Summary</h2>
+    <p class="summary">
+      Smart contract auditor and CTF player focused on finding vulnerabilities in DeFi protocols and on-chain systems. Experienced across the full audit workflow — reading codebases, tracing execution paths, and writing actionable reports. Active competitor on Sherlock, Code4rena, Cantina, and Codehawks with confirmed findings. Outside of audits, competing in CTFs with TCP1P across web, Web3, and cryptography categories.
+    </p>
+  </section>
+
+  <!-- AUDIT RESULTS -->
+  <section>
+    <h2>Audit Results</h2>
+
+    <div class="entry">
+      <span class="entry-title">Current Finance — Sherlock Contest</span>
+      <span class="entry-date">2025</span>
+    </div>
+    <div class="entry-sub">Competitive smart contract audit</div>
+    <ul>
+      <li>1 valid Medium severity finding confirmed</li>
+    </ul>
+
+    <div class="entry">
+      <span class="entry-title">Codehawks First Flight #56</span>
+      <span class="entry-date">2025</span>
+    </div>
+    <div class="entry-sub">Competitive audit · Codehawks</div>
+    <ul>
+      <li><strong>Top #1</strong> ranking out of all participants</li>
+    </ul>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section>
+    <h2>Experience</h2>
+
+    <div class="entry">
+      <span class="entry-title">Web3 Security Researcher</span>
+      <span class="entry-date">2025 – Present</span>
+    </div>
+    <div class="entry-sub">Independent · Remote</div>
+    <ul>
+      <li>Participating in competitive smart contract audits on Sherlock, Code4rena, Cantina, and Codehawks.</li>
+      <li>Analyzed DeFi protocol audit reports to identify vulnerability patterns and attack vectors.</li>
+      <li>Studied EVM internals and common vulnerability classes including reentrancy, price oracle manipulation, flash loan attacks, and access control flaws.</li>
+    </ul>
+
+    <div class="entry">
+      <span class="entry-title">CTF Player — TCP1P</span>
+      <span class="entry-date">2024 – Present</span>
+    </div>
+    <div class="entry-sub"><a href="https://ctftime.org/user/242912" target="_blank">ctftime.org/user/242912</a></div>
+    <ul>
+      <li>Solved 100+ challenges across 30+ competitions spanning web, Web3, cryptography, forensics, and reverse engineering.</li>
+      <li>Authored Web3 challenges for the TCP1P CTF Platform.</li>
+      <li>Published writeups for 50+ challenges at <a href="https://blog.kudaliar.id" target="_blank">blog.kudaliar.id</a>.</li>
+    </ul>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section>
+    <h2>Achievements</h2>
+    <ul>
+      <li><strong>Top #1</strong> — Codehawks First Flight #56 (2025)</li>
+      <li><strong>3rd Place</strong> — RITSEC CTF, team TCP1P (2026)</li>
+      <li><strong>Top 15 Pentester</strong> — CyberAcademy Helium Challenge (2026)</li>
+      <li>Solved 100+ CTF challenges across 30+ competitions with 10+ categories</li>
+    </ul>
+  </section>
+
+  <!-- PROJECTS -->
+  <section>
+    <h2>Projects</h2>
+
+    <div class="entry">
+      <span class="entry-title">Constable</span>
+      <span class="entry-date">2025</span>
+    </div>
+    <div class="entry-sub">Solana Colosseum Agent Hackathon 2025</div>
+    <ul>
+      <li>On-chain forensics and investigation toolkit for Solana — traces fund flows and identifies suspicious transaction patterns.</li>
+    </ul>
+
+    <div class="entry">
+      <span class="entry-title">SHARK-Fin</span>
+      <span class="entry-date">2026</span>
+    </div>
+    <div class="entry-sub">PIDI x Digdaya Hackathon 2026 · Bank Indonesia + OJK</div>
+    <ul>
+      <li>OSINT-based financial threat intelligence platform. Python backend, React frontend, Docker, 92 passing tests.</li>
+    </ul>
+  </section>
+
+  <!-- SKILLS -->
+  <section>
+    <h2>Skills</h2>
+    <div class="skill-row">
+      <span class="skill-label">Languages</span>
+      <span class="skill-value">Solidity, Python, JavaScript, Bash</span>
+    </div>
+    <div class="skill-row">
+      <span class="skill-label">Audit Tools</span>
+      <span class="skill-value">Foundry, Hardhat, Slither, Echidna</span>
+    </div>
+    <div class="skill-row">
+      <span class="skill-label">Web3 Knowledge</span>
+      <span class="skill-value">EVM internals, DeFi protocol mechanics, common smart contract vulnerability classes, Uniswap V4</span>
+    </div>
+    <div class="skill-row">
+      <span class="skill-label">CTF / Web</span>
+      <span class="skill-value">Burp Suite, OSINT, XSS, CSRF, cryptography</span>
+    </div>
+    <div class="skill-row">
+      <span class="skill-label">Other</span>
+      <span class="skill-value">React, Docker, Git</span>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section>
+    <h2>Certifications</h2>
+    <ul class="cert-list">
+      <li>Cyfrin Updraft: Smart Contract Security</li>
+      <li>Cyfrin Updraft: Uniswap V4</li>
+      <li>Cyfrin Updraft: Advanced Web3 Wallet Security</li>
+    </ul>
+  </section>
+
+
+
+</body>
+</html>
