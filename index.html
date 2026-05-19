@@ -704,7 +704,7 @@
       }
 
       .hero-actions .button.primary {
-        grid-column: 1 / -1;
+        grid-column: auto;
       }
 
       .button {
@@ -722,25 +722,26 @@
       }
 
       .profile-top {
-        padding: 14px;
+        padding: 16px;
       }
 
       .avatar {
-        width: 58px;
-        height: 58px;
+        width: 64px;
+        height: 64px;
       }
 
       .profile-body {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: 1fr;
       }
 
       .profile-link {
-        flex-direction: column;
-        gap: 4px;
-        justify-content: start;
-        min-height: 74px;
-        padding: 12px;
-        font-size: 13px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        min-height: 0;
+        padding: 13px 15px;
+        font-size: 14px;
       }
 
       .profile-link strong {
@@ -748,7 +749,7 @@
       }
 
       .profile-link span {
-        text-align: left;
+        text-align: right;
       }
 
       .metric {
@@ -928,7 +929,6 @@
     @media (max-width: 380px) {
       .hero-actions,
       .audit-grid,
-      .profile-body,
       .metric-grid {
         grid-template-columns: 1fr;
       }
