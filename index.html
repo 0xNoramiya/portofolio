@@ -3,307 +3,954 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Muhammad Rifqi Haikal — Web3 Security</title>
+  <title>Muhammad Rifqi Haikal — Security Researcher &amp; Builder</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { -webkit-font-smoothing: antialiased; }
+    :root {
+      --paper: #f7f8f4;
+      --surface: #ffffff;
+      --surface-strong: #111510;
+      --ink: #171a16;
+      --muted: #667064;
+      --soft: #eef0e8;
+      --line: #dfe4d8;
+      --teal: #2f6f5e;
+      --green: #8aa63f;
+      --copper: #b85f36;
+      --gold: #c39a2e;
+      --shadow: 0 18px 45px rgba(28, 38, 27, 0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
 
     body {
+      min-height: 100vh;
       font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-      font-size: 15px;
-      line-height: 1.7;
-      color: #111;
-      background: #fff;
-      max-width: 800px;
-      margin: 64px auto;
-      padding: 0 40px 80px;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    /* HEADER */
-    .header {
-      padding-bottom: 24px;
-      margin-bottom: 32px;
-      border-bottom: 2px solid #111;
-    }
-
-    .header h1 {
-      font-size: 26px;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      margin-bottom: 2px;
-    }
-
-    .header .sub {
-      font-size: 13px;
-      color: #666;
-      margin-bottom: 10px;
-    }
-
-    .header .links {
-      font-size: 13px;
-      color: #444;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0;
-    }
-
-    .header .links a { color: #444; }
-    .header .links span { margin: 0 8px; color: #bbb; }
-
-    /* SECTION */
-    section { margin-bottom: 32px; }
-
-    section h2 {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #111;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 5px;
-      margin-bottom: 16px;
-    }
-
-    /* SUMMARY */
-    .summary {
-      font-size: 14px;
-      color: #333;
-      font-weight: 300;
-      line-height: 1.75;
-    }
-
-    /* ENTRY */
-    .entry {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 4px;
-    }
-
-    .entry-title { font-size: 15px; font-weight: 600; color: #111; }
-    .entry-date  { font-size: 12px; color: #888; white-space: nowrap; }
-    .entry-sub   { font-size: 13px; color: #666; margin-bottom: 8px; }
-
-    ul {
-      padding-left: 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      margin-bottom: 20px;
-    }
-
-    ul:last-child { margin-bottom: 0; }
-
-    li {
-      font-size: 14px;
-      color: #333;
-      font-weight: 300;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(17, 21, 16, 0.035) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(17, 21, 16, 0.035) 1px, transparent 1px),
+        var(--paper);
+      background-size: 34px 34px;
       line-height: 1.65;
     }
 
-    li strong { color: #111; font-weight: 600; }
-
-    /* FINDING TAG */
-    .tag {
-      display: inline-block;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 2px 8px;
-      border-radius: 3px;
-      margin-right: 6px;
-      vertical-align: middle;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    .tag-medium { background: #fff3cd; color: #7d5a00; border: 1px solid #e8d48b; }
+    a:hover { color: var(--teal); }
 
-    /* SKILLS */
-    .skill-row {
+    .page {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 28px 0 72px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
       display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px 0;
+      background: rgba(247, 248, 244, 0.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(17, 21, 16, 0.08);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: var(--surface-strong);
+      border-radius: 7px;
+      font-size: 12px;
+      letter-spacing: 0;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
       gap: 8px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .nav a {
+      padding: 7px 10px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+    }
+
+    .nav a:hover {
+      color: var(--ink);
+      background: var(--surface);
+      border-color: var(--line);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 310px;
+      gap: 34px;
+      align-items: end;
+      min-height: calc(100vh - 165px);
+      padding: 86px 0 46px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      margin-bottom: 18px;
+      padding: 7px 11px;
+      color: var(--teal);
+      background: rgba(47, 111, 94, 0.1);
+      border: 1px solid rgba(47, 111, 94, 0.22);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 820px;
+      font-size: clamp(44px, 8vw, 88px);
+      line-height: 0.98;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    .hero-subtitle {
+      max-width: 730px;
+      margin-top: 24px;
+      color: #3f473e;
+      font-size: clamp(18px, 2vw, 22px);
+      line-height: 1.55;
+      font-weight: 400;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 10px 15px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 8px 22px rgba(28, 38, 27, 0.05);
+    }
+
+    .button:hover {
+      color: var(--ink);
+      border-color: rgba(47, 111, 94, 0.45);
+      transform: translateY(-1px);
+    }
+
+    .button.primary {
+      color: #fff;
+      background: var(--surface-strong);
+      border-color: var(--surface-strong);
+    }
+
+    .button.primary:hover {
+      color: #fff;
+      background: var(--teal);
+      border-color: var(--teal);
+    }
+
+    .profile-panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .profile-top {
+      padding: 18px;
+      background: var(--surface-strong);
+      color: #fff;
+    }
+
+    .avatar-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .avatar {
+      width: 74px;
+      height: 74px;
+      flex: 0 0 auto;
+      border-radius: 8px;
+      border: 2px solid rgba(255, 255, 255, 0.22);
+      object-fit: cover;
+      background: #20251f;
+    }
+
+    .profile-name {
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .profile-role {
+      margin-top: 4px;
+      color: rgba(255, 255, 255, 0.68);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .profile-body {
+      display: grid;
+      gap: 1px;
+      background: var(--line);
+    }
+
+    .profile-link {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 13px 16px;
+      background: var(--surface);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .profile-link strong {
+      color: var(--ink);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .profile-link span {
+      overflow-wrap: anywhere;
+      text-align: right;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 6px 0 54px;
+    }
+
+    .metric {
+      min-height: 122px;
+      padding: 18px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(28, 38, 27, 0.045);
+    }
+
+    .metric b {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--ink);
+      font-size: 30px;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 350px;
+      gap: 42px;
+      align-items: start;
+    }
+
+    section {
+      scroll-margin-top: 86px;
+      margin-bottom: 54px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h2 {
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .section-note {
+      max-width: 380px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: right;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .project-card,
+    .audit-card,
+    .skill-block {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 12px 28px rgba(28, 38, 27, 0.045);
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 254px;
+      padding: 19px;
+    }
+
+    .project-card:hover,
+    .audit-card:hover {
+      border-color: rgba(47, 111, 94, 0.4);
+      transform: translateY(-2px);
+      transition: transform 160ms ease, border-color 160ms ease;
+    }
+
+    .project-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 17px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .project-meta span:first-child {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .year {
+      flex: 0 0 auto;
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .project-title {
+      margin-bottom: 10px;
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    .project-title a:hover { color: var(--teal); }
+
+    .project-card p {
+      color: #4f594d;
       font-size: 14px;
-      margin-bottom: 5px;
+      line-height: 1.65;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: auto;
+      padding-top: 18px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 25px;
+      padding: 4px 8px;
+      color: #364033;
+      background: var(--soft);
+      border: 1px solid rgba(17, 21, 16, 0.06);
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .tag.teal { color: var(--teal); background: rgba(47, 111, 94, 0.1); }
+    .tag.copper { color: var(--copper); background: rgba(184, 95, 54, 0.1); }
+    .tag.green { color: #557221; background: rgba(138, 166, 63, 0.14); }
+    .tag.gold { color: #755c13; background: rgba(195, 154, 46, 0.14); }
+
+    .audit-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .audit-card {
+      min-height: 126px;
+      padding: 17px;
+    }
+
+    .audit-card strong {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 17px;
+      line-height: 1.25;
+    }
+
+    .audit-card span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 15px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 150px minmax(0, 1fr);
+      gap: 22px;
+      padding: 0 0 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .timeline-item:last-child { border-bottom: 0; }
+
+    .timeline-date {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .timeline-title {
+      font-size: 17px;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .timeline-sub {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .timeline ul {
+      margin-top: 10px;
+      padding-left: 18px;
+    }
+
+    li {
+      color: #455043;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.65;
+    }
+
+    li + li { margin-top: 5px; }
+
+    li strong {
+      color: var(--ink);
+      font-weight: 800;
+    }
+
+    .achievement-list {
+      display: grid;
+      gap: 9px;
+    }
+
+    .achievement {
+      display: grid;
+      grid-template-columns: 92px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .achievement:last-child { border-bottom: 0; }
+
+    .rank {
+      width: fit-content;
+      padding: 5px 9px;
+      color: #fff;
+      background: var(--surface-strong);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .achievement:nth-child(2n) .rank { background: var(--teal); }
+    .achievement:nth-child(3n) .rank { background: var(--copper); }
+
+    .achievement span:last-child {
+      color: #455043;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .side-column {
+      position: sticky;
+      top: 88px;
+    }
+
+    .skill-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .skill-block {
+      padding: 16px;
     }
 
     .skill-label {
-      font-weight: 600;
-      min-width: 130px;
-      flex-shrink: 0;
-      color: #111;
+      margin-bottom: 8px;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
     }
 
-    .skill-value { color: #444; font-weight: 300; }
+    .skill-value {
+      color: #4f594d;
+      font-size: 13px;
+      line-height: 1.65;
+    }
 
-    /* CERTS */
-    .cert-list { list-style: disc; }
+    .cert-list {
+      display: grid;
+      gap: 8px;
+      list-style: none;
+    }
 
-    /* RESPONSIVE */
-    @media (max-width: 600px) {
-      body { margin: 32px auto; padding: 0 20px 60px; }
-      .entry { flex-direction: column; gap: 2px; }
-      .skill-row { flex-direction: column; gap: 1px; }
-      .skill-label { min-width: unset; }
+    .cert-list li {
+      padding: 11px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .cert-list li:last-child { border-bottom: 0; }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      margin-top: 42px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 58px;
+      }
+
+      .profile-panel,
+      .side-column {
+        position: static;
+      }
+
+      .metric-grid,
+      .audit-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        width: min(100% - 28px, 1180px);
+        padding-top: 16px;
+      }
+
+      .topbar {
+        position: static;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav {
+        justify-content: flex-start;
+      }
+
+      .hero {
+        gap: 24px;
+        padding: 46px 0 34px;
+      }
+
+      .hero-actions .button {
+        width: 100%;
+      }
+
+      .metric-grid,
+      .project-grid,
+      .audit-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .section-note {
+        text-align: left;
+      }
+
+      .timeline-item,
+      .achievement {
+        grid-template-columns: 1fr;
+        gap: 7px;
+      }
+
+      .profile-link {
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .profile-link span {
+        text-align: left;
+      }
+
+      .footer {
+        flex-direction: column;
+      }
     }
 
     @media print {
-      body { margin: 0; padding: 32px; }
+      body {
+        background: #fff;
+      }
+
+      .page {
+        width: 100%;
+        padding: 24px;
+      }
+
+      .topbar,
+      .hero-actions,
+      .profile-panel {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 0 0 24px;
+      }
+
+      .content-grid,
+      .project-grid,
+      .audit-grid,
+      .metric-grid {
+        display: block;
+      }
+
+      .project-card,
+      .audit-card,
+      .skill-block,
+      .metric {
+        margin-bottom: 12px;
+        box-shadow: none;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="page">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Muhammad Rifqi Haikal home">
+        <span class="brand-mark">MR</span>
+        <span>Muhammad Rifqi Haikal</span>
+      </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#audits">Audits</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#skills">Skills</a>
+      </nav>
+    </header>
 
-  <!-- HEADER -->
-  <div class="header">
-    <h1>Muhammad Rifqi Haikal</h1>
-    <div class="sub">Web3 Security Researcher · Banjarmasin, Indonesia</div>
-    <div class="links">
-      <a href="mailto:rhaikal91@gmail.com">rhaikal91@gmail.com</a>
-      <span>|</span>
-      <a href="https://github.com/0xnoramiya" target="_blank">github.com/0xnoramiya</a>
-      <span>|</span>
-      <a href="https://ctftime.org/user/242912" target="_blank">ctftime.org/user/242912</a>
-      <span>|</span>
-      <a href="https://blog.kudaliar.id" target="_blank">blog.kudaliar.id</a>
-    </div>
+    <main id="top">
+      <section class="hero" aria-labelledby="intro-title">
+        <div>
+          <div class="eyebrow">Security Researcher · Web3 &amp; Clinical AI</div>
+          <h1 id="intro-title">I audit protocols, break systems, and ship applied security tools.</h1>
+          <p class="hero-subtitle">
+            Security researcher and builder working across Web3, application security, and clinical AI. Active on audit platforms and CTFs, with published work spanning smart contracts, web exploitation, cryptography, RF/SDR, forensics, and clinical agent systems.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="mailto:rhaikal91@gmail.com">Contact</a>
+            <a class="button" href="https://github.com/0xnoramiya" target="_blank" rel="noopener">GitHub</a>
+            <a class="button" href="https://blog.kudaliar.id" target="_blank" rel="noopener">Security Blog</a>
+            <a class="button" href="https://audits.sherlock.xyz/watson/kudaliar" target="_blank" rel="noopener">Sherlock</a>
+          </div>
+        </div>
+
+        <aside class="profile-panel" aria-label="Profile links">
+          <div class="profile-top">
+            <div class="avatar-row">
+              <img class="avatar" src="https://github.com/0xNoramiya.png" alt="Muhammad Rifqi Haikal profile photo" />
+              <div>
+                <div class="profile-name">Muhammad Rifqi Haikal</div>
+                <div class="profile-role">Banjarmasin, Indonesia · kudaliar / 0xNoramiya</div>
+              </div>
+            </div>
+          </div>
+          <div class="profile-body">
+            <a class="profile-link" href="mailto:rhaikal91@gmail.com"><strong>Email</strong><span>rhaikal91@gmail.com</span></a>
+            <a class="profile-link" href="https://github.com/0xnoramiya" target="_blank" rel="noopener"><strong>Code</strong><span>github.com/0xnoramiya</span></a>
+            <a class="profile-link" href="https://ctftime.org/user/242912" target="_blank" rel="noopener"><strong>CTF</strong><span>ctftime.org/user/242912</span></a>
+            <a class="profile-link" href="https://blog.kudaliar.id" target="_blank" rel="noopener"><strong>Writing</strong><span>blog.kudaliar.id</span></a>
+          </div>
+        </aside>
+      </section>
+
+      <div class="metric-grid" aria-label="Portfolio highlights">
+        <div class="metric"><b>60+</b><span>published writeups and security notes</span></div>
+        <div class="metric"><b>100+</b><span>CTF challenges solved across 30+ contests</span></div>
+        <div class="metric"><b>4</b><span>public competitive audit platform profiles</span></div>
+        <div class="metric"><b>6</b><span>selected shipped projects wired from GitHub</span></div>
+      </div>
+
+      <section id="audits" aria-labelledby="audits-title">
+        <div class="section-head">
+          <h2 id="audits-title">Audit Portfolio</h2>
+          <p class="section-note">Public researcher profiles across competitive smart contract audit platforms.</p>
+        </div>
+        <div class="audit-grid">
+          <a class="audit-card" href="https://audits.sherlock.xyz/watson/kudaliar" target="_blank" rel="noopener">
+            <strong>Sherlock</strong>
+            <span>kudaliar Watson profile</span>
+          </a>
+          <a class="audit-card" href="https://profiles.cyfrin.io/u/kudaliar" target="_blank" rel="noopener">
+            <strong>CodeHawks / Cyfrin</strong>
+            <span>kudaliar auditor profile</span>
+          </a>
+          <a class="audit-card" href="https://code4rena.com/@kudaliar" target="_blank" rel="noopener">
+            <strong>Code4rena</strong>
+            <span>kudaliar warden profile</span>
+          </a>
+          <a class="audit-card" href="https://cantina.xyz/u/kudaliar" target="_blank" rel="noopener">
+            <strong>Cantina</strong>
+            <span>kudaliar researcher profile</span>
+          </a>
+        </div>
+      </section>
+
+      <div class="content-grid">
+        <div>
+          <section id="projects" aria-labelledby="projects-title">
+            <div class="section-head">
+              <h2 id="projects-title">Selected Projects</h2>
+              <p class="section-note">Original repositories selected from GitHub for security, Web3, clinical AI, and OSINT relevance.</p>
+            </div>
+            <div class="project-grid">
+              <article class="project-card">
+                <div class="project-meta"><span>Midnight Network Hackathon · Healthcare Track</span><span class="year">2026</span></div>
+                <h3 class="project-title"><a href="https://github.com/0xNoramiya/nightrx" target="_blank" rel="noopener">NightRx</a></h3>
+                <p>Privacy-preserving medication eligibility system using Midnight Compact smart contracts, zero-knowledge proofs, nullifiers, React, Node.js, and QR credential flows.</p>
+                <div class="tag-row"><span class="tag teal">Midnight</span><span class="tag green">ZK</span><span class="tag copper">Healthcare</span></div>
+              </article>
+
+              <article class="project-card">
+                <div class="project-meta"><span>Solana MagicBlock Hackathon</span><span class="year">2026</span></div>
+                <h3 class="project-title"><a href="https://github.com/0xNoramiya/sealdex" target="_blank" rel="noopener">Sealdex</a></h3>
+                <p>Sealed-bid auction infrastructure for autonomous bidding agents on Solana using Anchor, MagicBlock Private Ephemeral Rollups, TDX-sealed bids, Claude agents, and Next.js.</p>
+                <div class="tag-row"><span class="tag teal">Solana</span><span class="tag gold">MagicBlock</span><span class="tag copper">Agents</span></div>
+              </article>
+
+              <article class="project-card">
+                <div class="project-meta"><span>Claude Code Opus 4.7 Hackathon</span><span class="year">2026</span></div>
+                <h3 class="project-title"><a href="https://github.com/0xNoramiya/anamnesa" target="_blank" rel="noopener">Anamnesa</a></h3>
+                <p>Citation-first clinical QA system over 81 public guideline documents and 9,000+ chunks, with hybrid retrieval, MCP tools, verifier loop, FastAPI, Next.js, and 165 passing tests.</p>
+                <div class="tag-row"><span class="tag green">RAG</span><span class="tag teal">MCP</span><span class="tag copper">Clinical AI</span></div>
+              </article>
+
+              <article class="project-card">
+                <div class="project-meta"><span>AI Agent Olympics 2026</span><span class="year">2026</span></div>
+                <h3 class="project-title"><a href="https://github.com/0xNoramiya/patiently" target="_blank" rel="noopener">Patiently</a></h3>
+                <p>Multi-agent pre-visit intake and clinic queue system with Gemini triage, Featherless reminders, Speechmatics transcription, FastAPI, PostgreSQL, SSE, and Next.js.</p>
+                <div class="tag-row"><span class="tag copper">Agents</span><span class="tag green">FastAPI</span><span class="tag teal">Healthcare</span></div>
+              </article>
+
+              <article class="project-card">
+                <div class="project-meta"><span>PIDI x Digdaya Hackathon · BI + OJK</span><span class="year">2026</span></div>
+                <h3 class="project-title"><a href="https://github.com/0xNoramiya/shark-fin" target="_blank" rel="noopener">SHARK-Fin</a></h3>
+                <p>OSINT financial threat-intelligence platform for Indonesian banking data leaks, with Telegram/Paste/GitHub/Google collectors, risk scoring, PII masking, OJK draft reports, Docker, and 93 tests.</p>
+                <div class="tag-row"><span class="tag teal">OSINT</span><span class="tag gold">Threat Intel</span><span class="tag green">Docker</span></div>
+              </article>
+
+              <article class="project-card">
+                <div class="project-meta"><span>Solana Colosseum Agent Hackathon</span><span class="year">2025</span></div>
+                <h3 class="project-title"><a href="https://github.com/0xNoramiya/constable" target="_blank" rel="noopener">Constable</a></h3>
+                <p>On-chain forensics and investigation toolkit for Solana that recursively traces token flows across wallets and exports transaction paths for investigators.</p>
+                <div class="tag-row"><span class="tag teal">Solana</span><span class="tag copper">Forensics</span><span class="tag green">Flask</span></div>
+              </article>
+            </div>
+          </section>
+
+          <section id="experience" aria-labelledby="experience-title">
+            <div class="section-head">
+              <h2 id="experience-title">Experience</h2>
+            </div>
+            <div class="timeline">
+              <article class="timeline-item">
+                <div class="timeline-date">2025 — Present</div>
+                <div>
+                  <h3 class="timeline-title">Web3 Security Researcher</h3>
+                  <div class="timeline-sub">Independent · Remote</div>
+                  <ul>
+                    <li>Participating in competitive smart contract audits and maintaining public profiles on Sherlock, CodeHawks, Code4rena, and Cantina.</li>
+                    <li>Researching EVM and Solana failure modes, including DeFi mechanics, proxy and ABI edge cases, CPI verification, access control, and oracle assumptions.</li>
+                    <li>Building Web3 security tools and prototypes across Solidity, Solana/Anchor, Midnight Compact, zero-knowledge proofs, and on-chain transaction analysis.</li>
+                  </ul>
+                </div>
+              </article>
+
+              <article class="timeline-item">
+                <div class="timeline-date">2024 — Present</div>
+                <div>
+                  <h3 class="timeline-title">CTF Player — TCP1P</h3>
+                  <div class="timeline-sub"><a href="https://ctftime.org/user/242912" target="_blank" rel="noopener">ctftime.org/user/242912</a></div>
+                  <ul>
+                    <li>Solved 100+ challenges across 30+ competitions spanning web, Web3, cryptography, RF/SDR, forensics, pwn, and reverse engineering.</li>
+                    <li>Authored Web3 challenges for the TCP1P CTF Platform.</li>
+                    <li>Published 60+ challenge writeups and security notes at <a href="https://blog.kudaliar.id" target="_blank" rel="noopener">blog.kudaliar.id</a>.</li>
+                  </ul>
+                </div>
+              </article>
+            </div>
+          </section>
+        </div>
+
+        <aside class="side-column">
+          <section id="achievements" aria-labelledby="achievements-title">
+            <div class="section-head">
+              <h2 id="achievements-title">Achievements</h2>
+            </div>
+            <div class="achievement-list">
+              <div class="achievement"><span class="rank">1st</span><span>Midnight Network Hackathon, Healthcare Track (2026)</span></div>
+              <div class="achievement"><span class="rank">3rd</span><span>Solana MagicBlock Hackathon (2026)</span></div>
+              <div class="achievement"><span class="rank">Top 5</span><span>HackerRank Orchestrate Hackathon</span></div>
+              <div class="achievement"><span class="rank">Top 10</span><span>Paradigm Optimization Hackathon</span></div>
+              <div class="achievement"><span class="rank">Top #1</span><span>CodeHawks First Flight #56 (2025)</span></div>
+              <div class="achievement"><span class="rank">3rd</span><span>RITSEC CTF, team TCP1P (2026)</span></div>
+              <div class="achievement"><span class="rank">Top 15</span><span>CyberAcademy Helium Challenge (2026)</span></div>
+              <div class="achievement"><span class="rank">100+</span><span>CTF challenges across 30+ competitions with 10+ categories</span></div>
+            </div>
+          </section>
+
+          <section id="skills" aria-labelledby="skills-title">
+            <div class="section-head">
+              <h2 id="skills-title">Skills</h2>
+            </div>
+            <div class="skill-grid">
+              <div class="skill-block">
+                <div class="skill-label">Languages</div>
+                <div class="skill-value">Python, TypeScript, JavaScript, Solidity, Rust/Anchor, Compact, SQL, Bash</div>
+              </div>
+              <div class="skill-block">
+                <div class="skill-label">Web3 / ZK</div>
+                <div class="skill-value">EVM security, Solana CPI review, Midnight Compact, zero-knowledge credential flows, DeFi mechanics, on-chain forensics</div>
+              </div>
+              <div class="skill-block">
+                <div class="skill-label">AI / Agents</div>
+                <div class="skill-value">FastAPI agent backends, MCP/FastMCP, RAG, hybrid retrieval, verifier loops, structured JSON outputs, SSE, vLLM, Gemini, Anthropic, Featherless</div>
+              </div>
+              <div class="skill-block">
+                <div class="skill-label">Security Research</div>
+                <div class="skill-value">Web exploitation, XSS, SSRF, SSTI, SQLi, JWT/session flaws, parser differentials, cryptography, RF/SDR, forensics, Linux privilege escalation</div>
+              </div>
+              <div class="skill-block">
+                <div class="skill-label">Healthcare / Data</div>
+                <div class="skill-value">FHIR R4/HAPI, clinical guideline retrieval, medical workflow agents, PostgreSQL, SQLite, Pydantic, PDF ingestion, OSINT classifiers, data masking</div>
+              </div>
+              <div class="skill-block">
+                <div class="skill-label">Tooling</div>
+                <div class="skill-value">Docker, Git, GitHub Actions, pytest, ruff, Playwright/Passmark, React, Next.js, Vite, Tailwind CSS, shadcn/ui</div>
+              </div>
+            </div>
+          </section>
+
+          <section aria-labelledby="certifications-title">
+            <div class="section-head">
+              <h2 id="certifications-title">Certifications</h2>
+            </div>
+            <ul class="cert-list">
+              <li>Cyfrin Updraft: Smart Contract Security</li>
+              <li>Cyfrin Updraft: Uniswap V4</li>
+              <li>Cyfrin Updraft: Advanced Web3 Wallet Security</li>
+            </ul>
+          </section>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <span>Security research, applied AI, and protocol tooling.</span>
+      <span>Banjarmasin, Indonesia</span>
+    </footer>
   </div>
-
-  <!-- SUMMARY -->
-  <section>
-    <h2>Summary</h2>
-    <p class="summary">
-      Smart contract auditor and CTF player focused on finding vulnerabilities in DeFi protocols and on-chain systems. Experienced across the full audit workflow — reading codebases, tracing execution paths, and writing actionable reports. Active competitor on Sherlock, Code4rena, Cantina, and Codehawks with confirmed findings. Outside of audits, competing in CTFs with TCP1P across web, Web3, and cryptography categories.
-    </p>
-  </section>
-
-  <!-- AUDIT RESULTS -->
-  <section>
-    <h2>Audit Results</h2>
-
-    <div class="entry">
-      <span class="entry-title">Current Finance — Sherlock Contest</span>
-      <span class="entry-date">2025</span>
-    </div>
-    <div class="entry-sub">Competitive smart contract audit</div>
-    <ul>
-      <li>1 valid Medium severity finding confirmed</li>
-    </ul>
-
-    <div class="entry">
-      <span class="entry-title">Codehawks First Flight #56</span>
-      <span class="entry-date">2025</span>
-    </div>
-    <div class="entry-sub">Competitive audit · Codehawks</div>
-    <ul>
-      <li><strong>Top #1</strong> ranking out of all participants</li>
-    </ul>
-  </section>
-
-  <!-- EXPERIENCE -->
-  <section>
-    <h2>Experience</h2>
-
-    <div class="entry">
-      <span class="entry-title">Web3 Security Researcher</span>
-      <span class="entry-date">2025 – Present</span>
-    </div>
-    <div class="entry-sub">Independent · Remote</div>
-    <ul>
-      <li>Participating in competitive smart contract audits on Sherlock, Code4rena, Cantina, and Codehawks.</li>
-      <li>Analyzed DeFi protocol audit reports to identify vulnerability patterns and attack vectors.</li>
-      <li>Studied EVM internals and common vulnerability classes including reentrancy, price oracle manipulation, flash loan attacks, and access control flaws.</li>
-    </ul>
-
-    <div class="entry">
-      <span class="entry-title">CTF Player — TCP1P</span>
-      <span class="entry-date">2024 – Present</span>
-    </div>
-    <div class="entry-sub"><a href="https://ctftime.org/user/242912" target="_blank">ctftime.org/user/242912</a></div>
-    <ul>
-      <li>Solved 100+ challenges across 30+ competitions spanning web, Web3, cryptography, forensics, and reverse engineering.</li>
-      <li>Authored Web3 challenges for the TCP1P CTF Platform.</li>
-      <li>Published writeups for 50+ challenges at <a href="https://blog.kudaliar.id" target="_blank">blog.kudaliar.id</a>.</li>
-    </ul>
-  </section>
-
-  <!-- ACHIEVEMENTS -->
-  <section>
-    <h2>Achievements</h2>
-    <ul>
-      <li><strong>Top #1</strong> — Codehawks First Flight #56 (2025)</li>
-      <li><strong>3rd Place</strong> — RITSEC CTF, team TCP1P (2026)</li>
-      <li><strong>Top 15 Pentester</strong> — CyberAcademy Helium Challenge (2026)</li>
-      <li>Solved 100+ CTF challenges across 30+ competitions with 10+ categories</li>
-    </ul>
-  </section>
-
-  <!-- PROJECTS -->
-  <section>
-    <h2>Projects</h2>
-
-    <div class="entry">
-      <span class="entry-title">Constable</span>
-      <span class="entry-date">2025</span>
-    </div>
-    <div class="entry-sub">Solana Colosseum Agent Hackathon 2025</div>
-    <ul>
-      <li>On-chain forensics and investigation toolkit for Solana — traces fund flows and identifies suspicious transaction patterns.</li>
-    </ul>
-
-    <div class="entry">
-      <span class="entry-title">SHARK-Fin</span>
-      <span class="entry-date">2026</span>
-    </div>
-    <div class="entry-sub">PIDI x Digdaya Hackathon 2026 · Bank Indonesia + OJK</div>
-    <ul>
-      <li>OSINT-based financial threat intelligence platform. Python backend, React frontend, Docker, 92 passing tests.</li>
-    </ul>
-  </section>
-
-  <!-- SKILLS -->
-  <section>
-    <h2>Skills</h2>
-    <div class="skill-row">
-      <span class="skill-label">Languages</span>
-      <span class="skill-value">Solidity, Python, JavaScript, Bash</span>
-    </div>
-    <div class="skill-row">
-      <span class="skill-label">Audit Tools</span>
-      <span class="skill-value">Foundry, Hardhat, Slither, Echidna</span>
-    </div>
-    <div class="skill-row">
-      <span class="skill-label">Web3 Knowledge</span>
-      <span class="skill-value">EVM internals, DeFi protocol mechanics, common smart contract vulnerability classes, Uniswap V4</span>
-    </div>
-    <div class="skill-row">
-      <span class="skill-label">CTF / Web</span>
-      <span class="skill-value">Burp Suite, OSINT, XSS, CSRF, cryptography</span>
-    </div>
-    <div class="skill-row">
-      <span class="skill-label">Other</span>
-      <span class="skill-value">React, Docker, Git</span>
-    </div>
-  </section>
-
-  <!-- CERTIFICATIONS -->
-  <section>
-    <h2>Certifications</h2>
-    <ul class="cert-list">
-      <li>Cyfrin Updraft: Smart Contract Security</li>
-      <li>Cyfrin Updraft: Uniswap V4</li>
-      <li>Cyfrin Updraft: Advanced Web3 Wallet Security</li>
-    </ul>
-  </section>
-
-
-
 </body>
 </html>
