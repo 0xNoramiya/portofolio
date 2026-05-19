@@ -334,6 +334,32 @@
       text-align: right;
     }
 
+    .section-copy {
+      display: contents;
+    }
+
+    .fold-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--ink);
+      background: var(--surface);
+      font: inherit;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .fold-toggle:hover {
+      border-color: rgba(47, 111, 94, 0.45);
+      color: var(--teal);
+    }
+
     .project-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -675,6 +701,10 @@
         padding: 28px 0 20px;
       }
 
+      .profile-panel {
+        display: none;
+      }
+
       .eyebrow {
         margin-bottom: 14px;
         padding: 7px 10px;
@@ -713,45 +743,6 @@
         font-size: 14px;
       }
 
-      .profile-name {
-        font-size: 17px;
-      }
-
-      .profile-role {
-        font-size: 13px;
-      }
-
-      .profile-top {
-        padding: 16px;
-      }
-
-      .avatar {
-        width: 64px;
-        height: 64px;
-      }
-
-      .profile-body {
-        grid-template-columns: 1fr;
-      }
-
-      .profile-link {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        min-height: 0;
-        padding: 13px 15px;
-        font-size: 14px;
-      }
-
-      .profile-link strong {
-        font-size: 12px;
-      }
-
-      .profile-link span {
-        text-align: right;
-      }
-
       .metric {
         min-height: 98px;
         padding: 14px;
@@ -773,15 +764,30 @@
       }
 
       section {
-        margin-bottom: 38px;
+        margin-bottom: 12px;
+      }
+
+      .fold-section {
+        overflow: hidden;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        box-shadow: 0 12px 28px rgba(28, 38, 27, 0.04);
       }
 
       .section-head {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 7px;
-        margin-bottom: 12px;
-        padding-bottom: 9px;
+        align-items: center;
+        flex-direction: row;
+        gap: 12px;
+        margin-bottom: 0;
+        padding: 14px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .section-copy {
+        display: grid;
+        gap: 5px;
+        min-width: 0;
       }
 
       h2 {
@@ -790,9 +796,27 @@
 
       .section-note {
         max-width: none;
-        font-size: 14px;
-        line-height: 1.55;
+        font-size: 13px;
+        line-height: 1.45;
         text-align: left;
+      }
+
+      .fold-toggle {
+        display: inline-flex;
+        flex: 0 0 auto;
+        margin-left: auto;
+      }
+
+      .fold-body {
+        padding: 0 14px 14px;
+      }
+
+      .fold-section.is-collapsed .section-head {
+        border-bottom: 0;
+      }
+
+      .fold-section.is-collapsed .fold-body {
+        display: none;
       }
 
       .audit-grid {
@@ -815,7 +839,7 @@
       }
 
       .content-grid {
-        gap: 0;
+        gap: 12px;
       }
 
       .project-grid {
@@ -920,7 +944,7 @@
 
       .footer {
         gap: 6px;
-        margin-top: 22px;
+        margin-top: 24px;
         flex-direction: column;
         font-size: 14px;
       }
@@ -1034,175 +1058,205 @@
         <div class="metric"><b>6</b><span>selected shipped projects wired from GitHub</span></div>
       </div>
 
-      <section id="audits" aria-labelledby="audits-title">
+      <section id="audits" class="fold-section" aria-labelledby="audits-title">
         <div class="section-head">
-          <h2 id="audits-title">Audit Portfolio</h2>
-          <p class="section-note">Public researcher profiles across competitive smart contract audit platforms.</p>
+          <div class="section-copy">
+            <h2 id="audits-title">Audit Portfolio</h2>
+            <p class="section-note">Public researcher profiles across competitive smart contract audit platforms.</p>
+          </div>
+          <button class="fold-toggle" type="button" aria-expanded="true">View more</button>
         </div>
-        <div class="audit-grid">
-          <a class="audit-card" href="https://audits.sherlock.xyz/watson/kudaliar" target="_blank" rel="noopener">
-            <strong>Sherlock</strong>
-            <span>kudaliar Watson profile</span>
-          </a>
-          <a class="audit-card" href="https://profiles.cyfrin.io/u/kudaliar" target="_blank" rel="noopener">
-            <strong>CodeHawks / Cyfrin</strong>
-            <span>kudaliar auditor profile</span>
-          </a>
-          <a class="audit-card" href="https://code4rena.com/@kudaliar" target="_blank" rel="noopener">
-            <strong>Code4rena</strong>
-            <span>kudaliar warden profile</span>
-          </a>
-          <a class="audit-card" href="https://cantina.xyz/u/kudaliar" target="_blank" rel="noopener">
-            <strong>Cantina</strong>
-            <span>kudaliar researcher profile</span>
-          </a>
+        <div class="fold-body">
+          <div class="audit-grid">
+            <a class="audit-card" href="https://audits.sherlock.xyz/watson/kudaliar" target="_blank" rel="noopener">
+              <strong>Sherlock</strong>
+              <span>kudaliar Watson profile</span>
+            </a>
+            <a class="audit-card" href="https://profiles.cyfrin.io/u/kudaliar" target="_blank" rel="noopener">
+              <strong>CodeHawks / Cyfrin</strong>
+              <span>kudaliar auditor profile</span>
+            </a>
+            <a class="audit-card" href="https://code4rena.com/@kudaliar" target="_blank" rel="noopener">
+              <strong>Code4rena</strong>
+              <span>kudaliar warden profile</span>
+            </a>
+            <a class="audit-card" href="https://cantina.xyz/u/kudaliar" target="_blank" rel="noopener">
+              <strong>Cantina</strong>
+              <span>kudaliar researcher profile</span>
+            </a>
+          </div>
         </div>
       </section>
 
       <div class="content-grid">
         <div>
-          <section id="projects" aria-labelledby="projects-title">
+          <section id="projects" class="fold-section" aria-labelledby="projects-title">
             <div class="section-head">
-              <h2 id="projects-title">Selected Projects</h2>
-              <p class="section-note">Original repositories selected from GitHub for security, Web3, clinical AI, and OSINT relevance.</p>
+              <div class="section-copy">
+                <h2 id="projects-title">Selected Projects</h2>
+                <p class="section-note">Original repositories selected from GitHub for security, Web3, clinical AI, and OSINT relevance.</p>
+              </div>
+              <button class="fold-toggle" type="button" aria-expanded="true">View more</button>
             </div>
-            <div class="project-grid">
-              <article class="project-card">
-                <div class="project-meta"><span>Midnight Network Hackathon · Healthcare Track</span><span class="year">2026</span></div>
-                <h3 class="project-title"><a href="https://github.com/0xNoramiya/nightrx" target="_blank" rel="noopener">NightRx</a></h3>
-                <p>Privacy-preserving medication eligibility system using Midnight Compact smart contracts, zero-knowledge proofs, nullifiers, React, Node.js, and QR credential flows.</p>
-                <div class="tag-row"><span class="tag teal">Midnight</span><span class="tag green">ZK</span><span class="tag copper">Healthcare</span></div>
-              </article>
+            <div class="fold-body">
+              <div class="project-grid">
+                <article class="project-card">
+                  <div class="project-meta"><span>Midnight Network Hackathon · Healthcare Track</span><span class="year">2026</span></div>
+                  <h3 class="project-title"><a href="https://github.com/0xNoramiya/nightrx" target="_blank" rel="noopener">NightRx</a></h3>
+                  <p>Privacy-preserving medication eligibility system using Midnight Compact smart contracts, zero-knowledge proofs, nullifiers, React, Node.js, and QR credential flows.</p>
+                  <div class="tag-row"><span class="tag teal">Midnight</span><span class="tag green">ZK</span><span class="tag copper">Healthcare</span></div>
+                </article>
 
-              <article class="project-card">
-                <div class="project-meta"><span>Solana MagicBlock Hackathon</span><span class="year">2026</span></div>
-                <h3 class="project-title"><a href="https://github.com/0xNoramiya/sealdex" target="_blank" rel="noopener">Sealdex</a></h3>
-                <p>Sealed-bid auction infrastructure for autonomous bidding agents on Solana using Anchor, MagicBlock Private Ephemeral Rollups, TDX-sealed bids, Claude agents, and Next.js.</p>
-                <div class="tag-row"><span class="tag teal">Solana</span><span class="tag gold">MagicBlock</span><span class="tag copper">Agents</span></div>
-              </article>
+                <article class="project-card">
+                  <div class="project-meta"><span>Solana MagicBlock Hackathon</span><span class="year">2026</span></div>
+                  <h3 class="project-title"><a href="https://github.com/0xNoramiya/sealdex" target="_blank" rel="noopener">Sealdex</a></h3>
+                  <p>Sealed-bid auction infrastructure for autonomous bidding agents on Solana using Anchor, MagicBlock Private Ephemeral Rollups, TDX-sealed bids, Claude agents, and Next.js.</p>
+                  <div class="tag-row"><span class="tag teal">Solana</span><span class="tag gold">MagicBlock</span><span class="tag copper">Agents</span></div>
+                </article>
 
-              <article class="project-card">
-                <div class="project-meta"><span>Claude Code Opus 4.7 Hackathon</span><span class="year">2026</span></div>
-                <h3 class="project-title"><a href="https://github.com/0xNoramiya/anamnesa" target="_blank" rel="noopener">Anamnesa</a></h3>
-                <p>Citation-first clinical QA system over 81 public guideline documents and 9,000+ chunks, with hybrid retrieval, MCP tools, verifier loop, FastAPI, Next.js, and 165 passing tests.</p>
-                <div class="tag-row"><span class="tag green">RAG</span><span class="tag teal">MCP</span><span class="tag copper">Clinical AI</span></div>
-              </article>
+                <article class="project-card">
+                  <div class="project-meta"><span>Claude Code Opus 4.7 Hackathon</span><span class="year">2026</span></div>
+                  <h3 class="project-title"><a href="https://github.com/0xNoramiya/anamnesa" target="_blank" rel="noopener">Anamnesa</a></h3>
+                  <p>Citation-first clinical QA system over 81 public guideline documents and 9,000+ chunks, with hybrid retrieval, MCP tools, verifier loop, FastAPI, Next.js, and 165 passing tests.</p>
+                  <div class="tag-row"><span class="tag green">RAG</span><span class="tag teal">MCP</span><span class="tag copper">Clinical AI</span></div>
+                </article>
 
-              <article class="project-card">
-                <div class="project-meta"><span>AI Agent Olympics 2026</span><span class="year">2026</span></div>
-                <h3 class="project-title"><a href="https://github.com/0xNoramiya/patiently" target="_blank" rel="noopener">Patiently</a></h3>
-                <p>Multi-agent pre-visit intake and clinic queue system with Gemini triage, Featherless reminders, Speechmatics transcription, FastAPI, PostgreSQL, SSE, and Next.js.</p>
-                <div class="tag-row"><span class="tag copper">Agents</span><span class="tag green">FastAPI</span><span class="tag teal">Healthcare</span></div>
-              </article>
+                <article class="project-card">
+                  <div class="project-meta"><span>AI Agent Olympics 2026</span><span class="year">2026</span></div>
+                  <h3 class="project-title"><a href="https://github.com/0xNoramiya/patiently" target="_blank" rel="noopener">Patiently</a></h3>
+                  <p>Multi-agent pre-visit intake and clinic queue system with Gemini triage, Featherless reminders, Speechmatics transcription, FastAPI, PostgreSQL, SSE, and Next.js.</p>
+                  <div class="tag-row"><span class="tag copper">Agents</span><span class="tag green">FastAPI</span><span class="tag teal">Healthcare</span></div>
+                </article>
 
-              <article class="project-card">
-                <div class="project-meta"><span>PIDI x Digdaya Hackathon · BI + OJK</span><span class="year">2026</span></div>
-                <h3 class="project-title"><a href="https://github.com/0xNoramiya/shark-fin" target="_blank" rel="noopener">SHARK-Fin</a></h3>
-                <p>OSINT financial threat-intelligence platform for Indonesian banking data leaks, with Telegram/Paste/GitHub/Google collectors, risk scoring, PII masking, OJK draft reports, Docker, and 93 tests.</p>
-                <div class="tag-row"><span class="tag teal">OSINT</span><span class="tag gold">Threat Intel</span><span class="tag green">Docker</span></div>
-              </article>
+                <article class="project-card">
+                  <div class="project-meta"><span>PIDI x Digdaya Hackathon · BI + OJK</span><span class="year">2026</span></div>
+                  <h3 class="project-title"><a href="https://github.com/0xNoramiya/shark-fin" target="_blank" rel="noopener">SHARK-Fin</a></h3>
+                  <p>OSINT financial threat-intelligence platform for Indonesian banking data leaks, with Telegram/Paste/GitHub/Google collectors, risk scoring, PII masking, OJK draft reports, Docker, and 93 tests.</p>
+                  <div class="tag-row"><span class="tag teal">OSINT</span><span class="tag gold">Threat Intel</span><span class="tag green">Docker</span></div>
+                </article>
 
-              <article class="project-card">
-                <div class="project-meta"><span>Solana Colosseum Agent Hackathon</span><span class="year">2025</span></div>
-                <h3 class="project-title"><a href="https://github.com/0xNoramiya/constable" target="_blank" rel="noopener">Constable</a></h3>
-                <p>On-chain forensics and investigation toolkit for Solana that recursively traces token flows across wallets and exports transaction paths for investigators.</p>
-                <div class="tag-row"><span class="tag teal">Solana</span><span class="tag copper">Forensics</span><span class="tag green">Flask</span></div>
-              </article>
+                <article class="project-card">
+                  <div class="project-meta"><span>Solana Colosseum Agent Hackathon</span><span class="year">2025</span></div>
+                  <h3 class="project-title"><a href="https://github.com/0xNoramiya/constable" target="_blank" rel="noopener">Constable</a></h3>
+                  <p>On-chain forensics and investigation toolkit for Solana that recursively traces token flows across wallets and exports transaction paths for investigators.</p>
+                  <div class="tag-row"><span class="tag teal">Solana</span><span class="tag copper">Forensics</span><span class="tag green">Flask</span></div>
+                </article>
+              </div>
             </div>
           </section>
 
-          <section id="experience" aria-labelledby="experience-title">
+          <section id="experience" class="fold-section" aria-labelledby="experience-title">
             <div class="section-head">
-              <h2 id="experience-title">Experience</h2>
+              <div class="section-copy">
+                <h2 id="experience-title">Experience</h2>
+              </div>
+              <button class="fold-toggle" type="button" aria-expanded="true">View more</button>
             </div>
-            <div class="timeline">
-              <article class="timeline-item">
-                <div class="timeline-date">2025 — Present</div>
-                <div>
-                  <h3 class="timeline-title">Web3 Security Researcher</h3>
-                  <div class="timeline-sub">Independent · Remote</div>
-                  <ul>
-                    <li>Participating in competitive smart contract audits and maintaining public profiles on Sherlock, CodeHawks, Code4rena, and Cantina.</li>
-                    <li>Researching EVM and Solana failure modes, including DeFi mechanics, proxy and ABI edge cases, CPI verification, access control, and oracle assumptions.</li>
-                    <li>Building Web3 security tools and prototypes across Solidity, Solana/Anchor, Midnight Compact, zero-knowledge proofs, and on-chain transaction analysis.</li>
-                  </ul>
-                </div>
-              </article>
+            <div class="fold-body">
+              <div class="timeline">
+                <article class="timeline-item">
+                  <div class="timeline-date">2025 — Present</div>
+                  <div>
+                    <h3 class="timeline-title">Web3 Security Researcher</h3>
+                    <div class="timeline-sub">Independent · Remote</div>
+                    <ul>
+                      <li>Participating in competitive smart contract audits and maintaining public profiles on Sherlock, CodeHawks, Code4rena, and Cantina.</li>
+                      <li>Researching EVM and Solana failure modes, including DeFi mechanics, proxy and ABI edge cases, CPI verification, access control, and oracle assumptions.</li>
+                      <li>Building Web3 security tools and prototypes across Solidity, Solana/Anchor, Midnight Compact, zero-knowledge proofs, and on-chain transaction analysis.</li>
+                    </ul>
+                  </div>
+                </article>
 
-              <article class="timeline-item">
-                <div class="timeline-date">2024 — Present</div>
-                <div>
-                  <h3 class="timeline-title">CTF Player — TCP1P</h3>
-                  <div class="timeline-sub"><a href="https://ctftime.org/user/242912" target="_blank" rel="noopener">ctftime.org/user/242912</a></div>
-                  <ul>
-                    <li>Solved 100+ challenges across 30+ competitions spanning web, Web3, cryptography, RF/SDR, forensics, pwn, and reverse engineering.</li>
-                    <li>Authored Web3 challenges for the TCP1P CTF Platform.</li>
-                    <li>Published 60+ challenge writeups and security notes at <a href="https://blog.kudaliar.id" target="_blank" rel="noopener">blog.kudaliar.id</a>.</li>
-                  </ul>
-                </div>
-              </article>
+                <article class="timeline-item">
+                  <div class="timeline-date">2024 — Present</div>
+                  <div>
+                    <h3 class="timeline-title">CTF Player — TCP1P</h3>
+                    <div class="timeline-sub"><a href="https://ctftime.org/user/242912" target="_blank" rel="noopener">ctftime.org/user/242912</a></div>
+                    <ul>
+                      <li>Solved 100+ challenges across 30+ competitions spanning web, Web3, cryptography, RF/SDR, forensics, pwn, and reverse engineering.</li>
+                      <li>Authored Web3 challenges for the TCP1P CTF Platform.</li>
+                      <li>Published 60+ challenge writeups and security notes at <a href="https://blog.kudaliar.id" target="_blank" rel="noopener">blog.kudaliar.id</a>.</li>
+                    </ul>
+                  </div>
+                </article>
+              </div>
             </div>
           </section>
         </div>
 
         <aside class="side-column">
-          <section id="achievements" aria-labelledby="achievements-title">
+          <section id="achievements" class="fold-section" aria-labelledby="achievements-title">
             <div class="section-head">
-              <h2 id="achievements-title">Achievements</h2>
+              <div class="section-copy">
+                <h2 id="achievements-title">Achievements</h2>
+              </div>
+              <button class="fold-toggle" type="button" aria-expanded="true">View more</button>
             </div>
-            <div class="achievement-list">
-              <div class="achievement"><span class="rank">1st</span><span>Midnight Network Hackathon, Healthcare Track (2026)</span></div>
-              <div class="achievement"><span class="rank">3rd</span><span>Solana MagicBlock Hackathon (2026)</span></div>
-              <div class="achievement"><span class="rank">Top 5</span><span>HackerRank Orchestrate Hackathon</span></div>
-              <div class="achievement"><span class="rank">Top 10</span><span>Paradigm Optimization Hackathon</span></div>
-              <div class="achievement"><span class="rank">Top #1</span><span>CodeHawks First Flight #56 (2025)</span></div>
-              <div class="achievement"><span class="rank">3rd</span><span>RITSEC CTF, team TCP1P (2026)</span></div>
-              <div class="achievement"><span class="rank">Top 15</span><span>CyberAcademy Helium Challenge (2026)</span></div>
-              <div class="achievement"><span class="rank">100+</span><span>CTF challenges across 30+ competitions with 10+ categories</span></div>
-            </div>
-          </section>
-
-          <section id="skills" aria-labelledby="skills-title">
-            <div class="section-head">
-              <h2 id="skills-title">Skills</h2>
-            </div>
-            <div class="skill-grid">
-              <div class="skill-block">
-                <div class="skill-label">Languages</div>
-                <div class="skill-value">Python, TypeScript, JavaScript, Solidity, Rust/Anchor, Compact, SQL, Bash</div>
-              </div>
-              <div class="skill-block">
-                <div class="skill-label">Web3 / ZK</div>
-                <div class="skill-value">EVM security, Solana CPI review, Midnight Compact, zero-knowledge credential flows, DeFi mechanics, on-chain forensics</div>
-              </div>
-              <div class="skill-block">
-                <div class="skill-label">AI / Agents</div>
-                <div class="skill-value">FastAPI agent backends, MCP/FastMCP, RAG, hybrid retrieval, verifier loops, structured JSON outputs, SSE, vLLM, Gemini, Anthropic, Featherless</div>
-              </div>
-              <div class="skill-block">
-                <div class="skill-label">Security Research</div>
-                <div class="skill-value">Web exploitation, XSS, SSRF, SSTI, SQLi, JWT/session flaws, parser differentials, cryptography, RF/SDR, forensics, Linux privilege escalation</div>
-              </div>
-              <div class="skill-block">
-                <div class="skill-label">Healthcare / Data</div>
-                <div class="skill-value">FHIR R4/HAPI, clinical guideline retrieval, medical workflow agents, PostgreSQL, SQLite, Pydantic, PDF ingestion, OSINT classifiers, data masking</div>
-              </div>
-              <div class="skill-block">
-                <div class="skill-label">Tooling</div>
-                <div class="skill-value">Docker, Git, GitHub Actions, pytest, ruff, Playwright/Passmark, React, Next.js, Vite, Tailwind CSS, shadcn/ui</div>
+            <div class="fold-body">
+              <div class="achievement-list">
+                <div class="achievement"><span class="rank">1st</span><span>Midnight Network Hackathon, Healthcare Track (2026)</span></div>
+                <div class="achievement"><span class="rank">3rd</span><span>Solana MagicBlock Hackathon (2026)</span></div>
+                <div class="achievement"><span class="rank">Top 5</span><span>HackerRank Orchestrate Hackathon</span></div>
+                <div class="achievement"><span class="rank">Top 10</span><span>Paradigm Optimization Hackathon</span></div>
+                <div class="achievement"><span class="rank">Top #1</span><span>CodeHawks First Flight #56 (2025)</span></div>
+                <div class="achievement"><span class="rank">3rd</span><span>RITSEC CTF, team TCP1P (2026)</span></div>
+                <div class="achievement"><span class="rank">Top 15</span><span>CyberAcademy Helium Challenge (2026)</span></div>
+                <div class="achievement"><span class="rank">100+</span><span>CTF challenges across 30+ competitions with 10+ categories</span></div>
               </div>
             </div>
           </section>
 
-          <section aria-labelledby="certifications-title">
+          <section id="skills" class="fold-section" aria-labelledby="skills-title">
             <div class="section-head">
-              <h2 id="certifications-title">Certifications</h2>
+              <div class="section-copy">
+                <h2 id="skills-title">Skills</h2>
+              </div>
+              <button class="fold-toggle" type="button" aria-expanded="true">View more</button>
             </div>
-            <ul class="cert-list">
-              <li>Cyfrin Updraft: Smart Contract Security</li>
-              <li>Cyfrin Updraft: Uniswap V4</li>
-              <li>Cyfrin Updraft: Advanced Web3 Wallet Security</li>
-            </ul>
+            <div class="fold-body">
+              <div class="skill-grid">
+                <div class="skill-block">
+                  <div class="skill-label">Languages</div>
+                  <div class="skill-value">Python, TypeScript, JavaScript, Solidity, Rust/Anchor, Compact, SQL, Bash</div>
+                </div>
+                <div class="skill-block">
+                  <div class="skill-label">Web3 / ZK</div>
+                  <div class="skill-value">EVM security, Solana CPI review, Midnight Compact, zero-knowledge credential flows, DeFi mechanics, on-chain forensics</div>
+                </div>
+                <div class="skill-block">
+                  <div class="skill-label">AI / Agents</div>
+                  <div class="skill-value">FastAPI agent backends, MCP/FastMCP, RAG, hybrid retrieval, verifier loops, structured JSON outputs, SSE, vLLM, Gemini, Anthropic, Featherless</div>
+                </div>
+                <div class="skill-block">
+                  <div class="skill-label">Security Research</div>
+                  <div class="skill-value">Web exploitation, XSS, SSRF, SSTI, SQLi, JWT/session flaws, parser differentials, cryptography, RF/SDR, forensics, Linux privilege escalation</div>
+                </div>
+                <div class="skill-block">
+                  <div class="skill-label">Healthcare / Data</div>
+                  <div class="skill-value">FHIR R4/HAPI, clinical guideline retrieval, medical workflow agents, PostgreSQL, SQLite, Pydantic, PDF ingestion, OSINT classifiers, data masking</div>
+                </div>
+                <div class="skill-block">
+                  <div class="skill-label">Tooling</div>
+                  <div class="skill-value">Docker, Git, GitHub Actions, pytest, ruff, Playwright/Passmark, React, Next.js, Vite, Tailwind CSS, shadcn/ui</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="fold-section" aria-labelledby="certifications-title">
+            <div class="section-head">
+              <div class="section-copy">
+                <h2 id="certifications-title">Certifications</h2>
+              </div>
+              <button class="fold-toggle" type="button" aria-expanded="true">View more</button>
+            </div>
+            <div class="fold-body">
+              <ul class="cert-list">
+                <li>Cyfrin Updraft: Smart Contract Security</li>
+                <li>Cyfrin Updraft: Uniswap V4</li>
+                <li>Cyfrin Updraft: Advanced Web3 Wallet Security</li>
+              </ul>
+            </div>
           </section>
         </aside>
       </div>
@@ -1213,5 +1267,84 @@
       <span>Banjarmasin, Indonesia</span>
     </footer>
   </div>
+
+  <script>
+    (() => {
+      const mobileQuery = window.matchMedia('(max-width: 720px)');
+      const sections = Array.from(document.querySelectorAll('.fold-section'));
+
+      const updateButton = (section) => {
+        const button = section.querySelector('.fold-toggle');
+        if (!button) return;
+
+        const collapsed = section.classList.contains('is-collapsed');
+        button.textContent = collapsed ? 'View more' : 'View less';
+        button.setAttribute('aria-expanded', String(!collapsed));
+      };
+
+      sections.forEach((section, index) => {
+        const button = section.querySelector('.fold-toggle');
+        const body = section.querySelector('.fold-body');
+        if (!button || !body) return;
+
+        const bodyId = body.id || `fold-body-${index}`;
+        body.id = bodyId;
+        button.setAttribute('aria-controls', bodyId);
+
+        button.addEventListener('click', () => {
+          section.dataset.userToggled = 'true';
+          section.classList.toggle('is-collapsed');
+          updateButton(section);
+        });
+      });
+
+      const applyMode = () => {
+        sections.forEach((section) => {
+          const button = section.querySelector('.fold-toggle');
+          if (!button) return;
+
+          if (mobileQuery.matches) {
+            button.hidden = false;
+            if (section.dataset.userToggled !== 'true') {
+              section.classList.add('is-collapsed');
+            }
+          } else {
+            button.hidden = true;
+            section.classList.remove('is-collapsed');
+          }
+
+          updateButton(section);
+        });
+      };
+
+      const openHashTarget = () => {
+        if (!mobileQuery.matches || !window.location.hash) return;
+
+        const target = document.querySelector(window.location.hash);
+        if (!target || !target.classList.contains('fold-section')) return;
+
+        target.dataset.userToggled = 'true';
+        target.classList.remove('is-collapsed');
+        updateButton(target);
+      };
+
+      applyMode();
+      openHashTarget();
+
+      if (mobileQuery.addEventListener) {
+        mobileQuery.addEventListener('change', () => {
+          applyMode();
+          openHashTarget();
+        });
+      } else {
+        mobileQuery.addListener(() => {
+          applyMode();
+          openHashTarget();
+        });
+      }
+
+      window.addEventListener('hashchange', openHashTarget);
+    })();
+  </script>
 </body>
 </html>
