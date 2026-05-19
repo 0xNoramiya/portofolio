@@ -620,223 +620,321 @@
     @media (max-width: 720px) {
       body {
         font-size: 16px;
+        background-size: 28px 28px;
       }
 
       .page {
-        width: min(100% - 28px, 1180px);
-        padding-top: 16px;
+        width: min(100% - 24px, 1180px);
+        padding: 12px 0 46px;
       }
 
       .topbar {
         position: static;
         align-items: flex-start;
         flex-direction: column;
+        gap: 10px;
+        padding: 8px 0 10px;
       }
 
       .brand {
-        font-size: 14px;
+        font-size: 13px;
       }
 
       .brand-mark {
-        width: 32px;
-        height: 32px;
-        font-size: 13px;
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
       }
 
       .nav {
-        gap: 7px;
+        width: 100%;
+        gap: 6px;
+        overflow-x: auto;
+        flex-wrap: nowrap;
         justify-content: flex-start;
-        font-size: 14px;
+        padding-bottom: 3px;
+        font-size: 13px;
+        scrollbar-width: none;
+      }
+
+      .nav::-webkit-scrollbar {
+        display: none;
       }
 
       .nav a {
-        padding: 8px 10px;
+        flex: 0 0 auto;
+        padding: 7px 10px;
+        background: rgba(255, 255, 255, 0.66);
+        border-color: rgba(17, 21, 16, 0.07);
       }
 
       .hero {
-        gap: 24px;
-        padding: 46px 0 34px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        padding: 28px 0 20px;
       }
 
       .eyebrow {
-        padding: 8px 11px;
-        font-size: 13px;
+        margin-bottom: 14px;
+        padding: 7px 10px;
+        font-size: 12px;
       }
 
       h1 {
-        font-size: clamp(42px, 12vw, 56px);
-        line-height: 1.04;
+        font-size: clamp(35px, 10.6vw, 44px);
+        line-height: 1.08;
       }
 
       .hero-subtitle {
-        font-size: 19px;
-        line-height: 1.58;
+        margin-top: 18px;
+        font-size: 16px;
+        line-height: 1.68;
+      }
+
+      .hero-actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        margin-top: 20px;
       }
 
       .hero-actions .button {
-        width: 100%;
+        width: auto;
+      }
+
+      .hero-actions .button.primary {
+        grid-column: 1 / -1;
       }
 
       .button {
-        min-height: 48px;
-        padding: 13px 16px;
-        font-size: 15px;
+        min-height: 44px;
+        padding: 11px 12px;
+        font-size: 14px;
       }
 
       .profile-name {
-        font-size: 19px;
+        font-size: 17px;
       }
 
       .profile-role {
-        font-size: 14px;
+        font-size: 13px;
+      }
+
+      .profile-top {
+        padding: 14px;
+      }
+
+      .avatar {
+        width: 58px;
+        height: 58px;
+      }
+
+      .profile-body {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .profile-link {
-        padding: 15px 16px;
-        font-size: 15px;
+        flex-direction: column;
+        gap: 4px;
+        justify-content: start;
+        min-height: 74px;
+        padding: 12px;
+        font-size: 13px;
       }
 
       .profile-link strong {
-        font-size: 13px;
-      }
-
-      .metric {
-        min-height: 112px;
-        padding: 18px;
-      }
-
-      .metric b {
-        font-size: 34px;
-      }
-
-      .metric span {
-        font-size: 15px;
-      }
-
-      .metric-grid,
-      .project-grid,
-      .audit-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .section-head {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      h2 {
-        font-size: 14px;
-      }
-
-      .section-note {
-        font-size: 15px;
-        text-align: left;
-      }
-
-      .audit-card {
-        min-height: 116px;
-        padding: 18px;
-      }
-
-      .audit-card strong {
-        font-size: 20px;
-      }
-
-      .audit-card span {
-        font-size: 15px;
-      }
-
-      .project-card {
-        min-height: auto;
-        padding: 20px;
-      }
-
-      .project-meta {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 4px;
-        font-size: 14px;
-      }
-
-      .project-title {
-        font-size: 26px;
-      }
-
-      .project-card p {
-        font-size: 16px;
-        line-height: 1.7;
-      }
-
-      .tag {
-        min-height: 31px;
-        padding: 6px 10px;
-        font-size: 13px;
-      }
-
-      .timeline-item,
-      .achievement {
-        grid-template-columns: 1fr;
-        gap: 7px;
-      }
-
-      .timeline-date {
-        font-size: 13px;
-      }
-
-      .timeline-title {
-        font-size: 20px;
-      }
-
-      .timeline-sub {
-        font-size: 15px;
-      }
-
-      li {
-        font-size: 16px;
-        line-height: 1.7;
-      }
-
-      .achievement {
-        padding: 14px 0;
-      }
-
-      .rank {
-        padding: 7px 10px;
-        font-size: 13px;
-      }
-
-      .achievement span:last-child {
-        font-size: 16px;
-      }
-
-      .skill-block {
-        padding: 18px;
-      }
-
-      .skill-label {
-        font-size: 13px;
-      }
-
-      .skill-value {
-        font-size: 16px;
-      }
-
-      .cert-list li {
-        font-size: 16px;
-      }
-
-      .profile-link {
-        flex-direction: column;
-        gap: 4px;
+        font-size: 12px;
       }
 
       .profile-link span {
         text-align: left;
       }
 
-      .footer {
+      .metric {
+        min-height: 98px;
+        padding: 14px;
+      }
+
+      .metric b {
+        font-size: 30px;
+      }
+
+      .metric span {
+        font-size: 13px;
+        line-height: 1.48;
+      }
+
+      .metric-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        margin: 12px 0 32px;
+      }
+
+      section {
+        margin-bottom: 38px;
+      }
+
+      .section-head {
+        align-items: flex-start;
         flex-direction: column;
+        gap: 7px;
+        margin-bottom: 12px;
+        padding-bottom: 9px;
+      }
+
+      h2 {
+        font-size: 13px;
+      }
+
+      .section-note {
+        max-width: none;
+        font-size: 14px;
+        line-height: 1.55;
+        text-align: left;
+      }
+
+      .audit-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .audit-card {
+        min-height: 108px;
+        padding: 14px;
+      }
+
+      .audit-card strong {
+        font-size: 17px;
+      }
+
+      .audit-card span {
+        font-size: 13px;
+        line-height: 1.45;
+      }
+
+      .content-grid {
+        gap: 0;
+      }
+
+      .project-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .project-card {
+        min-height: auto;
+        padding: 16px;
+      }
+
+      .project-meta {
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 6px 10px;
+        margin-bottom: 12px;
+        font-size: 13px;
+      }
+
+      .project-title {
+        font-size: 23px;
+      }
+
+      .project-card p {
         font-size: 15px;
+        line-height: 1.66;
+      }
+
+      .tag-row {
+        gap: 6px;
+        padding-top: 14px;
+      }
+
+      .tag {
+        min-height: 28px;
+        padding: 5px 9px;
+        font-size: 12px;
+      }
+
+      .timeline {
+        gap: 12px;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 7px;
+        padding-bottom: 14px;
+      }
+
+      .timeline-date {
+        font-size: 13px;
+        letter-spacing: 0.06em;
+      }
+
+      .timeline-title {
+        font-size: 19px;
+      }
+
+      .timeline-sub {
+        font-size: 14px;
+      }
+
+      li {
+        font-size: 15px;
+        line-height: 1.68;
+      }
+
+      .achievement {
+        grid-template-columns: 72px minmax(0, 1fr);
+        gap: 10px;
+        padding: 11px 0;
+      }
+
+      .rank {
+        padding: 6px 8px;
+        font-size: 12px;
+      }
+
+      .achievement span:last-child {
+        font-size: 15px;
+        line-height: 1.5;
+      }
+
+      .skill-grid {
+        gap: 10px;
+      }
+
+      .skill-block {
+        padding: 14px;
+      }
+
+      .skill-label {
+        font-size: 12px;
+      }
+
+      .skill-value {
+        font-size: 15px;
+        line-height: 1.62;
+      }
+
+      .footer {
+        gap: 6px;
+        margin-top: 22px;
+        flex-direction: column;
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .hero-actions,
+      .audit-grid,
+      .profile-body,
+      .metric-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .achievement {
+        grid-template-columns: 1fr;
       }
     }
 
