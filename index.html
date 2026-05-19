@@ -342,22 +342,28 @@
       display: none;
       align-items: center;
       justify-content: center;
-      min-height: 34px;
-      padding: 7px 10px;
+      width: 34px;
+      height: 34px;
+      padding: 0;
       border: 1px solid var(--line);
       border-radius: 999px;
       color: var(--ink);
       background: var(--surface);
       font: inherit;
-      font-size: 12px;
+      font-size: 18px;
       font-weight: 800;
       cursor: pointer;
-      white-space: nowrap;
+      line-height: 1;
+      transition: transform 160ms ease, border-color 160ms ease, color 160ms ease;
     }
 
     .fold-toggle:hover {
       border-color: rgba(47, 111, 94, 0.45);
       color: var(--teal);
+    }
+
+    .fold-section:not(.is-collapsed) .fold-toggle {
+      transform: rotate(90deg);
     }
 
     .project-grid {
@@ -1064,7 +1070,7 @@
             <h2 id="audits-title">Audit Portfolio</h2>
             <p class="section-note">Public researcher profiles across competitive smart contract audit platforms.</p>
           </div>
-          <button class="fold-toggle" type="button" aria-expanded="true">View more</button>
+          <button class="fold-toggle" type="button" aria-expanded="true" aria-label="Toggle Audit Portfolio">&gt;</button>
         </div>
         <div class="fold-body">
           <div class="audit-grid">
@@ -1096,7 +1102,7 @@
                 <h2 id="projects-title">Selected Projects</h2>
                 <p class="section-note">Original repositories selected from GitHub for security, Web3, clinical AI, and OSINT relevance.</p>
               </div>
-              <button class="fold-toggle" type="button" aria-expanded="true">View more</button>
+              <button class="fold-toggle" type="button" aria-expanded="true" aria-label="Toggle Selected Projects">&gt;</button>
             </div>
             <div class="fold-body">
               <div class="project-grid">
@@ -1150,7 +1156,7 @@
               <div class="section-copy">
                 <h2 id="experience-title">Experience</h2>
               </div>
-              <button class="fold-toggle" type="button" aria-expanded="true">View more</button>
+              <button class="fold-toggle" type="button" aria-expanded="true" aria-label="Toggle Experience">&gt;</button>
             </div>
             <div class="fold-body">
               <div class="timeline">
@@ -1190,7 +1196,7 @@
               <div class="section-copy">
                 <h2 id="achievements-title">Achievements</h2>
               </div>
-              <button class="fold-toggle" type="button" aria-expanded="true">View more</button>
+              <button class="fold-toggle" type="button" aria-expanded="true" aria-label="Toggle Achievements">&gt;</button>
             </div>
             <div class="fold-body">
               <div class="achievement-list">
@@ -1211,7 +1217,7 @@
               <div class="section-copy">
                 <h2 id="skills-title">Skills</h2>
               </div>
-              <button class="fold-toggle" type="button" aria-expanded="true">View more</button>
+              <button class="fold-toggle" type="button" aria-expanded="true" aria-label="Toggle Skills">&gt;</button>
             </div>
             <div class="fold-body">
               <div class="skill-grid">
@@ -1248,7 +1254,7 @@
               <div class="section-copy">
                 <h2 id="certifications-title">Certifications</h2>
               </div>
-              <button class="fold-toggle" type="button" aria-expanded="true">View more</button>
+              <button class="fold-toggle" type="button" aria-expanded="true" aria-label="Toggle Certifications">&gt;</button>
             </div>
             <div class="fold-body">
               <ul class="cert-list">
@@ -1278,7 +1284,6 @@
         if (!button) return;
 
         const collapsed = section.classList.contains('is-collapsed');
-        button.textContent = collapsed ? 'View more' : 'View less';
         button.setAttribute('aria-expanded', String(!collapsed));
       };
 
