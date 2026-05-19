@@ -618,6 +618,10 @@
     }
 
     @media (max-width: 720px) {
+      body {
+        font-size: 16px;
+      }
+
       .page {
         width: min(100% - 28px, 1180px);
         padding-top: 16px;
@@ -629,8 +633,24 @@
         flex-direction: column;
       }
 
+      .brand {
+        font-size: 14px;
+      }
+
+      .brand-mark {
+        width: 32px;
+        height: 32px;
+        font-size: 13px;
+      }
+
       .nav {
+        gap: 7px;
         justify-content: flex-start;
+        font-size: 14px;
+      }
+
+      .nav a {
+        padding: 8px 10px;
       }
 
       .hero {
@@ -638,8 +658,59 @@
         padding: 46px 0 34px;
       }
 
+      .eyebrow {
+        padding: 8px 11px;
+        font-size: 13px;
+      }
+
+      h1 {
+        font-size: clamp(42px, 12vw, 56px);
+        line-height: 1.04;
+      }
+
+      .hero-subtitle {
+        font-size: 19px;
+        line-height: 1.58;
+      }
+
       .hero-actions .button {
         width: 100%;
+      }
+
+      .button {
+        min-height: 48px;
+        padding: 13px 16px;
+        font-size: 15px;
+      }
+
+      .profile-name {
+        font-size: 19px;
+      }
+
+      .profile-role {
+        font-size: 14px;
+      }
+
+      .profile-link {
+        padding: 15px 16px;
+        font-size: 15px;
+      }
+
+      .profile-link strong {
+        font-size: 13px;
+      }
+
+      .metric {
+        min-height: 112px;
+        padding: 18px;
+      }
+
+      .metric b {
+        font-size: 34px;
+      }
+
+      .metric span {
+        font-size: 15px;
       }
 
       .metric-grid,
@@ -653,14 +724,105 @@
         flex-direction: column;
       }
 
+      h2 {
+        font-size: 14px;
+      }
+
       .section-note {
+        font-size: 15px;
         text-align: left;
+      }
+
+      .audit-card {
+        min-height: 116px;
+        padding: 18px;
+      }
+
+      .audit-card strong {
+        font-size: 20px;
+      }
+
+      .audit-card span {
+        font-size: 15px;
+      }
+
+      .project-card {
+        min-height: auto;
+        padding: 20px;
+      }
+
+      .project-meta {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 4px;
+        font-size: 14px;
+      }
+
+      .project-title {
+        font-size: 26px;
+      }
+
+      .project-card p {
+        font-size: 16px;
+        line-height: 1.7;
+      }
+
+      .tag {
+        min-height: 31px;
+        padding: 6px 10px;
+        font-size: 13px;
       }
 
       .timeline-item,
       .achievement {
         grid-template-columns: 1fr;
         gap: 7px;
+      }
+
+      .timeline-date {
+        font-size: 13px;
+      }
+
+      .timeline-title {
+        font-size: 20px;
+      }
+
+      .timeline-sub {
+        font-size: 15px;
+      }
+
+      li {
+        font-size: 16px;
+        line-height: 1.7;
+      }
+
+      .achievement {
+        padding: 14px 0;
+      }
+
+      .rank {
+        padding: 7px 10px;
+        font-size: 13px;
+      }
+
+      .achievement span:last-child {
+        font-size: 16px;
+      }
+
+      .skill-block {
+        padding: 18px;
+      }
+
+      .skill-label {
+        font-size: 13px;
+      }
+
+      .skill-value {
+        font-size: 16px;
+      }
+
+      .cert-list li {
+        font-size: 16px;
       }
 
       .profile-link {
@@ -674,6 +836,7 @@
 
       .footer {
         flex-direction: column;
+        font-size: 15px;
       }
     }
 
