@@ -733,8 +733,7 @@
     }
 
     #writing .section-intro,
-    #writing .writing-copy p,
-    #writing .writing-link span {
+    #writing .writing-copy p {
       color: rgba(255, 255, 255, 0.68);
     }
 
@@ -743,8 +742,7 @@
       border-color: rgba(255, 255, 255, 0.6);
     }
 
-    #writing .writing-layout,
-    #writing .writing-link {
+    #writing .writing-layout {
       border-color: rgba(255, 255, 255, 0.58);
     }
 
@@ -757,13 +755,9 @@
       border-color: rgba(255, 255, 255, 0.2);
     }
 
-    #writing .writing-link:hover strong {
-      color: #f4ce61;
-    }
-
     .writing-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+      grid-template-columns: minmax(240px, 0.68fr) minmax(0, 1.32fr);
       gap: 70px;
       align-items: start;
       border-top: 1px solid var(--ink);
@@ -805,29 +799,79 @@
       text-transform: uppercase;
     }
 
-    .writing-link {
-      display: block;
-      padding: 28px 0;
-      border-bottom: 1px solid var(--ink);
+    .article-feed {
+      min-width: 0;
     }
 
-    .writing-link span {
-      display: block;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .writing-link strong {
-      display: flex;
-      justify-content: space-between;
+    .article-row {
+      display: grid;
+      grid-template-columns: 94px minmax(0, 1fr) 20px;
       gap: 18px;
-      margin-top: 8px;
-      font-size: 18px;
-      font-weight: 500;
+      align-items: start;
+      padding: 18px 0 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    .writing-link:hover strong {
-      color: var(--blue);
+    .article-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding-top: 4px;
+      color: #f4ce61;
+      font-family: var(--mono);
+      font-size: 9px;
+      font-weight: 500;
+      line-height: 1.45;
+      text-transform: uppercase;
+    }
+
+    .article-copy h3 {
+      color: #fff;
+      font-family: var(--display);
+      font-size: 21px;
+      font-weight: 600;
+      line-height: 1.18;
+    }
+
+    .article-copy p {
+      margin-top: 5px;
+      color: rgba(255, 255, 255, 0.62);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .article-arrow {
+      color: rgba(255, 255, 255, 0.68);
+      font-family: var(--mono);
+      font-size: 15px;
+      line-height: 1.3;
+      transition: color 160ms ease, transform 160ms ease;
+    }
+
+    .article-row:hover .article-copy h3,
+    .article-row:hover .article-arrow {
+      color: #f4ce61;
+    }
+
+    .article-row:hover .article-arrow {
+      transform: translate(2px, -2px);
+    }
+
+    .article-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 18px 0 2px;
+      color: rgba(255, 255, 255, 0.72);
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    .article-footer:hover {
+      color: #f4ce61;
     }
 
     .background-grid {
@@ -1326,6 +1370,38 @@
         grid-template-columns: 1fr;
       }
 
+      .article-row {
+        grid-template-columns: minmax(0, 1fr) 20px;
+        gap: 8px 14px;
+        padding: 18px 0 20px;
+      }
+
+      .article-meta {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        gap: 9px;
+        padding-top: 0;
+      }
+
+      .article-meta span::before {
+        margin-right: 9px;
+        color: rgba(255, 255, 255, 0.36);
+        content: "/";
+      }
+
+      .article-copy h3 {
+        font-size: 20px;
+      }
+
+      .article-copy p {
+        font-size: 13px;
+      }
+
+      .article-arrow {
+        grid-column: 2;
+        grid-row: 2;
+      }
+
       .experience-item {
         grid-template-columns: 1fr;
         gap: 7px;
@@ -1788,13 +1864,84 @@
               </div>
             </div>
 
-            <a class="writing-link" href="https://blog.kudaliar.id" target="_blank" rel="noopener">
-              <span>Security notebook</span>
-              <strong>
-                <span>blog.kudaliar.id</span>
-                <span>↗</span>
-              </strong>
-            </a>
+            <div class="article-feed" aria-label="Latest security writeups">
+              <a class="article-row" href="https://blog.kudaliar.id/blog/byuctf-2026-gitastic/" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <time datetime="2026-05-30">30 May 2026</time>
+                  <span>Forensics</span>
+                </div>
+                <div class="article-copy">
+                  <h3>BYU CTF 2026: Gitastic 1-5</h3>
+                  <p>Five Git forensics challenges spanning hidden commits, odd authorship, deleted blobs, and replace refs.</p>
+                </div>
+                <span class="article-arrow" aria-hidden="true">↗</span>
+              </a>
+
+              <a class="article-row" href="https://blog.kudaliar.id/blog/byuctf-2026-on-point/" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <time datetime="2026-05-30">30 May 2026</time>
+                  <span>Web</span>
+                </div>
+                <div class="article-copy">
+                  <h3>BYU CTF 2026: on point</h3>
+                  <p>Beating an event-handler blocklist and strict CSP with an autofocus payload and top-level navigation leak.</p>
+                </div>
+                <span class="article-arrow" aria-hidden="true">↗</span>
+              </a>
+
+              <a class="article-row" href="https://blog.kudaliar.id/blog/byuctf-2026-inception/" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <time datetime="2026-05-30">30 May 2026</time>
+                  <span>Forensics</span>
+                </div>
+                <div class="article-copy">
+                  <h3>BYU CTF 2026: Inception</h3>
+                  <p>Carving a PNG, ZIP, and PDF polyglot to recover and reassemble a three-part flag.</p>
+                </div>
+                <span class="article-arrow" aria-hidden="true">↗</span>
+              </a>
+
+              <a class="article-row" href="https://blog.kudaliar.id/blog/ndias-2026-ds-signpost/" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <time datetime="2026-05-17">17 May 2026</time>
+                  <span>RF / SDR</span>
+                </div>
+                <div class="article-copy">
+                  <h3>NDIAS 2026: D's Signpost</h3>
+                  <p>Separating five overlapping 915 MHz transmissions across Morse, FM voice, AX.25/APRS, and DQPSK.</p>
+                </div>
+                <span class="article-arrow" aria-hidden="true">↗</span>
+              </a>
+
+              <a class="article-row" href="https://blog.kudaliar.id/blog/ndias-2026-gate-to-the-past/" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <time datetime="2026-05-16">16 May 2026</time>
+                  <span>Crypto</span>
+                </div>
+                <div class="article-copy">
+                  <h3>NDIAS 2026: Gate to the Past</h3>
+                  <p>Recovering a Diffie-Hellman private exponent through the Debian OpenSSL weak-PRNG vulnerability.</p>
+                </div>
+                <span class="article-arrow" aria-hidden="true">↗</span>
+              </a>
+
+              <a class="article-row" href="https://blog.kudaliar.id/blog/bitsctf-2026-bank-heist/" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <time datetime="2026-03-02">02 Mar 2026</time>
+                  <span>Blockchain</span>
+                </div>
+                <div class="article-copy">
+                  <h3>BITSCTF 2026: Bank Heist</h3>
+                  <p>Exploiting missing program ID checks in Solana cross-program invocation verification.</p>
+                </div>
+                <span class="article-arrow" aria-hidden="true">↗</span>
+              </a>
+
+              <a class="article-footer" href="https://blog.kudaliar.id" target="_blank" rel="noopener">
+                <span>All writeups at blog.kudaliar.id</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
