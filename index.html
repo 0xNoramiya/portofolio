@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Muhammad Rifqi Haikal is an independent smart contract security researcher with public findings across Sherlock and Cantina." />
-  <meta name="theme-color" content="#f4f5f2" />
+  <meta name="theme-color" content="#171916" />
   <meta property="og:title" content="Muhammad Rifqi Haikal — Smart Contract Security Researcher" />
   <meta property="og:description" content="Public audit findings, security research, technical writing, and selected systems work." />
   <meta property="og:type" content="website" />
@@ -14,21 +14,25 @@
   <title>Muhammad Rifqi Haikal — Smart Contract Security Researcher</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --paper: #f4f5f2;
-      --surface: #ffffff;
-      --ink: #111512;
-      --muted: #5d655f;
-      --faint: #858c87;
-      --line: #cfd4cf;
-      --line-dark: #a8afa9;
-      --red: #b63a2b;
-      --blue: #255b9b;
-      --green: #17694a;
-      --amber: #8b5a0c;
-      --sans: "IBM Plex Sans", Arial, sans-serif;
+      --paper: #eef1ed;
+      --surface: #fbfcfa;
+      --ink: #171916;
+      --night: #1c1e1b;
+      --muted: #59615b;
+      --faint: #7f8881;
+      --line: #c9d0ca;
+      --line-dark: #9ba59e;
+      --red: #e4553f;
+      --blue: #3767c8;
+      --green: #21866b;
+      --amber: #e2bd4d;
+      --pale-blue: #dfe8f7;
+      --pale-green: #dcebe4;
+      --sans: "Manrope", Arial, sans-serif;
+      --display: "Newsreader", Georgia, serif;
       --mono: "IBM Plex Mono", Consolas, monospace;
     }
 
@@ -88,18 +92,27 @@
       grid-template-columns: auto 1fr auto;
       align-items: center;
       gap: 34px;
-      min-height: 66px;
-      background: rgba(244, 245, 242, 0.96);
-      border-bottom: 1px solid var(--line);
+      min-height: 74px;
+      background: rgba(238, 241, 237, 0.96);
+      border-bottom: 1px solid var(--line-dark);
     }
 
     .wordmark {
       display: flex;
-      align-items: baseline;
+      align-items: center;
       gap: 12px;
       font-family: var(--mono);
       font-size: 13px;
       font-weight: 500;
+    }
+
+    .wordmark > span {
+      display: grid;
+      width: 40px;
+      height: 40px;
+      place-items: center;
+      color: #fff;
+      background: var(--red);
     }
 
     .wordmark small {
@@ -130,19 +143,45 @@
 
     .top-contact {
       color: var(--ink);
+      padding: 8px 10px;
+      background: var(--amber);
+      border: 1px solid var(--ink);
       font-family: var(--mono);
       font-size: 12px;
       font-weight: 500;
     }
 
     .hero {
+      position: relative;
       display: grid;
       grid-template-columns: minmax(0, 1fr) 310px;
       gap: 72px;
       align-items: center;
-      min-height: 570px;
-      padding: 64px 0 58px;
-      border-bottom: 1px solid var(--ink);
+      min-height: 600px;
+      margin-top: 24px;
+      padding: 64px 54px 58px;
+      color: #fff;
+      background: var(--night);
+      border-bottom: 0;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 8px;
+      background: var(--red);
+      content: "";
+    }
+
+    .hero::after {
+      position: absolute;
+      right: 28px;
+      bottom: 20px;
+      color: rgba(255, 255, 255, 0.38);
+      content: "05 / PUBLIC FINDINGS";
+      font-family: var(--mono);
+      font-size: 9px;
     }
 
     .kicker,
@@ -156,7 +195,7 @@
 
     .kicker {
       margin-bottom: 20px;
-      color: var(--red);
+      color: #66d0ad;
       font-size: 12px;
       font-weight: 500;
       text-transform: uppercase;
@@ -164,20 +203,25 @@
 
     h1 {
       max-width: 760px;
-      font-size: 72px;
-      font-weight: 500;
+      font-family: var(--display);
+      font-size: 82px;
+      font-weight: 600;
       letter-spacing: 0;
-      line-height: 1.02;
+      line-height: 0.96;
     }
 
     h1 span {
       display: block;
     }
 
+    h1 span:last-child {
+      color: #f4ce61;
+    }
+
     .hero-lead {
       max-width: 720px;
       margin-top: 26px;
-      color: #343a35;
+      color: rgba(255, 255, 255, 0.76);
       font-size: 21px;
       line-height: 1.55;
     }
@@ -196,33 +240,58 @@
       justify-content: center;
       min-height: 44px;
       padding: 10px 15px;
-      border: 1px solid var(--ink);
+      border: 1px solid #fff;
       border-radius: 3px;
-      background: var(--ink);
-      color: #fff;
+      background: #fff;
+      color: var(--ink);
       font-size: 13px;
       font-weight: 500;
     }
 
     .button:hover {
-      background: var(--green);
-      border-color: var(--green);
+      background: var(--red);
+      border-color: var(--red);
+      color: #fff;
     }
 
     .text-link {
-      color: var(--muted);
-      border-bottom: 1px solid var(--line-dark);
+      color: rgba(255, 255, 255, 0.72);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.42);
       font-family: var(--mono);
       font-size: 12px;
     }
 
     .text-link:hover {
-      color: var(--ink);
-      border-bottom-color: var(--ink);
+      color: #fff;
+      border-bottom-color: #fff;
+    }
+
+    .social-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      margin-top: 22px;
+      color: rgba(255, 255, 255, 0.56);
+      font-family: var(--mono);
+      font-size: 10px;
+    }
+
+    .social-line a:hover {
+      color: #fff;
     }
 
     .portrait {
+      position: relative;
+      z-index: 1;
       margin: 0;
+    }
+
+    .portrait::before {
+      position: absolute;
+      z-index: -1;
+      inset: 18px -18px -18px 18px;
+      background: var(--blue);
+      content: "";
     }
 
     .portrait img {
@@ -231,7 +300,8 @@
       aspect-ratio: 4 / 5;
       object-fit: cover;
       background: #dde1dc;
-      border: 1px solid var(--line-dark);
+      border: 0;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.32);
     }
 
     .portrait figcaption {
@@ -239,7 +309,7 @@
       justify-content: space-between;
       gap: 12px;
       padding-top: 10px;
-      color: var(--muted);
+      color: rgba(255, 255, 255, 0.58);
       font-family: var(--mono);
       font-size: 10px;
       line-height: 1.5;
@@ -248,17 +318,18 @@
     .evidence {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      border-bottom: 1px solid var(--line);
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--line-dark);
     }
 
     .evidence-item {
       min-height: 132px;
-      padding: 24px 22px 24px 0;
-      border-right: 1px solid var(--line);
+      padding: 26px 24px;
+      border-right: 1px solid rgba(23, 25, 22, 0.22);
     }
 
     .evidence-item + .evidence-item {
-      padding-left: 22px;
+      padding-left: 24px;
     }
 
     .evidence-item:last-child {
@@ -269,7 +340,7 @@
       display: block;
       margin-bottom: 8px;
       font-family: var(--mono);
-      font-size: 30px;
+      font-size: 34px;
       font-weight: 500;
       line-height: 1;
     }
@@ -282,9 +353,30 @@
       line-height: 1.45;
     }
 
+    .evidence-item:nth-child(1) {
+      color: #fff;
+      background: var(--red);
+    }
+
+    .evidence-item:nth-child(1) span {
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .evidence-item:nth-child(2) {
+      background: var(--pale-green);
+    }
+
+    .evidence-item:nth-child(3) {
+      background: #f2d97f;
+    }
+
+    .evidence-item:nth-child(4) {
+      background: var(--pale-blue);
+    }
+
     .section {
       scroll-margin-top: 86px;
-      padding: 80px 0 90px;
+      padding: 92px 0 98px;
       border-bottom: 1px solid var(--line-dark);
     }
 
@@ -296,8 +388,11 @@
     }
 
     .section-index {
+      display: inline-flex;
       margin-bottom: 12px;
-      color: var(--red);
+      padding: 4px 7px;
+      color: #fff;
+      background: var(--ink);
       font-size: 11px;
       font-weight: 500;
       text-transform: uppercase;
@@ -305,8 +400,9 @@
 
     h2 {
       max-width: 620px;
-      font-size: 38px;
-      font-weight: 500;
+      font-family: var(--display);
+      font-size: 48px;
+      font-weight: 600;
       letter-spacing: 0;
       line-height: 1.15;
     }
@@ -324,7 +420,7 @@
       width: 44px;
       height: 44px;
       padding: 0;
-      border: 1px solid var(--line-dark);
+      border: 1px solid var(--ink);
       border-radius: 0;
       background: transparent;
       color: var(--ink);
@@ -344,15 +440,21 @@
     }
 
     .result-list {
-      border-top: 1px solid var(--ink);
+      border-top: 2px solid var(--ink);
     }
 
     .result {
       display: grid;
       grid-template-columns: 130px minmax(0, 1fr) 190px;
       gap: 28px;
-      padding: 30px 0 34px;
+      padding: 34px 20px 38px;
       border-bottom: 1px solid var(--line);
+      transition: background 160ms ease, box-shadow 160ms ease;
+    }
+
+    .result:hover {
+      background: var(--surface);
+      box-shadow: inset 5px 0 var(--red);
     }
 
     .result-rail {
@@ -385,8 +487,9 @@
     }
 
     .result h3 {
-      font-size: 25px;
-      font-weight: 500;
+      font-family: var(--display);
+      font-size: 31px;
+      font-weight: 600;
       line-height: 1.2;
     }
 
@@ -452,7 +555,8 @@
     .result-outcome dd {
       margin-top: 2px;
       font-family: var(--mono);
-      font-size: 17px;
+      color: var(--blue);
+      font-size: 18px;
       font-weight: 500;
     }
 
@@ -470,7 +574,7 @@
       grid-template-columns: 130px minmax(0, 1fr) 190px;
       gap: 28px;
       align-items: center;
-      padding: 18px 0;
+      padding: 20px;
       color: var(--muted);
       border-bottom: 1px solid var(--line);
       font-size: 13px;
@@ -516,14 +620,14 @@
 
     .work-groups {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 56px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 32px;
     }
 
     .work-group h3,
     .subsection-title {
       padding-bottom: 12px;
-      border-bottom: 1px solid var(--ink);
+      border-bottom: 2px solid var(--ink);
       font-family: var(--mono);
       font-size: 12px;
       font-weight: 500;
@@ -532,27 +636,33 @@
 
     .work-row {
       display: grid;
-      grid-template-columns: 34px minmax(0, 1fr) auto;
+      grid-template-columns: 30px minmax(0, 1fr);
       gap: 16px;
       align-items: start;
-      padding: 22px 0;
+      padding: 22px 10px;
       border-bottom: 1px solid var(--line);
+      transition: background 160ms ease, color 160ms ease;
+    }
+
+    .work-row:hover {
+      background: var(--pale-blue);
     }
 
     .work-row:hover h4 {
-      color: var(--blue);
+      color: #244c9c;
     }
 
     .work-number {
       padding-top: 3px;
-      color: var(--faint);
+      color: var(--red);
       font-size: 10px;
     }
 
     .work-row h4 {
       margin-bottom: 6px;
-      font-size: 19px;
-      font-weight: 500;
+      font-family: var(--display);
+      font-size: 23px;
+      font-weight: 600;
       line-height: 1.2;
     }
 
@@ -564,13 +674,91 @@
     }
 
     .work-meta {
+      grid-column: 2;
       max-width: 120px;
       color: var(--faint);
       font-family: var(--mono);
       font-size: 9px;
       line-height: 1.5;
-      text-align: right;
+      text-align: left;
       text-transform: uppercase;
+    }
+
+    .more-work {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+      margin-top: 34px;
+      padding: 18px 0;
+      border-top: 1px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+
+    .more-work strong {
+      color: var(--red);
+      font-weight: 500;
+    }
+
+    .more-work a {
+      color: var(--muted);
+      border-bottom: 1px solid var(--line-dark);
+    }
+
+    .more-work a:hover {
+      color: var(--blue);
+      border-bottom-color: var(--blue);
+    }
+
+    #projects {
+      margin-inline: -36px;
+      padding-inline: 36px;
+      background: var(--surface);
+    }
+
+    #writing {
+      margin-inline: -36px;
+      padding-inline: 36px;
+      color: #fff;
+      background: #24332e;
+      border-bottom-color: #24332e;
+    }
+
+    #writing .section-index {
+      color: var(--ink);
+      background: var(--amber);
+    }
+
+    #writing .section-intro,
+    #writing .writing-copy p,
+    #writing .writing-link span {
+      color: rgba(255, 255, 255, 0.68);
+    }
+
+    #writing .fold-toggle {
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.6);
+    }
+
+    #writing .writing-layout,
+    #writing .writing-link {
+      border-color: rgba(255, 255, 255, 0.58);
+    }
+
+    #writing .topic-list {
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    #writing .topic-list span {
+      color: rgba(255, 255, 255, 0.62);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    #writing .writing-link:hover strong {
+      color: #f4ce61;
     }
 
     .writing-layout {
@@ -587,9 +775,10 @@
 
     .writing-count {
       margin-bottom: 20px;
-      font-family: var(--mono);
-      font-size: 52px;
-      font-weight: 400;
+      color: #f4ce61;
+      font-family: var(--display);
+      font-size: 72px;
+      font-weight: 600;
       line-height: 1;
     }
 
@@ -667,8 +856,9 @@
     }
 
     .experience-item h3 {
-      font-size: 20px;
-      font-weight: 500;
+      font-family: var(--display);
+      font-size: 25px;
+      font-weight: 600;
       line-height: 1.3;
     }
 
@@ -758,7 +948,13 @@
     }
 
     .achievement-rank {
-      color: var(--red);
+      display: inline-flex;
+      width: fit-content;
+      min-width: 48px;
+      justify-content: center;
+      padding: 3px 6px;
+      color: #fff;
+      background: var(--red);
       font-family: var(--mono);
       font-size: 11px;
       font-weight: 500;
@@ -780,11 +976,13 @@
       grid-template-columns: minmax(0, 1fr) auto;
       gap: 36px;
       padding: 34px 0 46px;
+      border-top: 6px solid var(--ink);
     }
 
     .footer-name {
-      font-size: 18px;
-      font-weight: 500;
+      font-family: var(--display);
+      font-size: 25px;
+      font-weight: 600;
     }
 
     .footer-note {
@@ -828,10 +1026,15 @@
       .hero {
         grid-template-columns: minmax(0, 1fr) 250px;
         gap: 44px;
+        padding-inline: 40px;
       }
 
       h1 {
-        font-size: 58px;
+        font-size: 66px;
+      }
+
+      .work-groups {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .result,
@@ -903,7 +1106,8 @@
       .hero {
         display: block;
         min-height: auto;
-        padding: 46px 0 44px;
+        margin-top: 12px;
+        padding: 46px 24px 44px;
       }
 
       .portrait {
@@ -916,8 +1120,8 @@
       }
 
       h1 {
-        font-size: 43px;
-        line-height: 1.06;
+        font-size: 52px;
+        line-height: 0.98;
       }
 
       .hero-lead {
@@ -949,7 +1153,7 @@
 
       .evidence-item {
         min-height: 116px;
-        padding: 18px 14px 18px 0;
+        padding: 18px 14px;
       }
 
       .evidence-item + .evidence-item {
@@ -995,7 +1199,7 @@
       }
 
       h2 {
-        font-size: 25px;
+        font-size: 31px;
         line-height: 1.2;
       }
 
@@ -1091,6 +1295,12 @@
         gap: 38px;
       }
 
+      #projects,
+      #writing {
+        margin-inline: -14px;
+        padding-inline: 14px;
+      }
+
       .work-row {
         grid-template-columns: 28px minmax(0, 1fr);
         gap: 12px;
@@ -1105,7 +1315,7 @@
       }
 
       .writing-count {
-        font-size: 42px;
+        font-size: 54px;
       }
 
       .writing-copy p {
@@ -1142,7 +1352,7 @@
 
     @media (max-width: 390px) {
       h1 {
-        font-size: 38px;
+        font-size: 44px;
       }
 
       .hero-actions {
@@ -1161,7 +1371,7 @@
       .evidence-item,
       .evidence-item + .evidence-item {
         min-height: 96px;
-        padding: 16px 0;
+        padding: 16px;
         border-right: 0;
         border-bottom: 1px solid var(--line);
       }
@@ -1242,6 +1452,10 @@
           <div class="hero-actions">
             <a class="button" href="mailto:rhaikal91@gmail.com">Discuss a security review ↗</a>
             <a class="text-link" href="#audits">View audit work ↓</a>
+          </div>
+          <div class="social-line" aria-label="Social profiles">
+            <a href="https://x.com/acetaminofenol" target="_blank" rel="noopener">X @acetaminofenol ↗</a>
+            <span>Discord @kudaliar1</span>
           </div>
         </div>
 
@@ -1408,7 +1622,7 @@
             <h2 id="work-title">Systems built beyond the audit queue.</h2>
           </div>
           <p class="section-intro">
-            Open source · security, protocol systems, clinical computing, and threat intelligence.
+            Selected from 30+ repositories · security, protocol systems, clinical computing, and threat intelligence.
           </p>
           <button class="fold-toggle" type="button" aria-expanded="true" aria-label="Toggle Selected work">&gt;</button>
         </div>
@@ -1418,8 +1632,17 @@
             <div class="work-group">
               <h3>Security and protocol systems</h3>
 
-              <a class="work-row" href="https://github.com/0xNoramiya/constable" target="_blank" rel="noopener">
+              <a class="work-row" href="https://github.com/0xNoramiya/ctf-blockchain-infra" target="_blank" rel="noopener">
                 <span class="work-number">01</span>
+                <div>
+                  <h4>CTF Blockchain Infra ↗</h4>
+                  <p>Manifest-driven on-chain CTF infrastructure with Foundry templates, per-player Anvil launchers, and Docker/Kubernetes deployment.</p>
+                </div>
+                <span class="work-meta">EVM · CTF infra · 2026</span>
+              </a>
+
+              <a class="work-row" href="https://github.com/0xNoramiya/constable" target="_blank" rel="noopener">
+                <span class="work-number">02</span>
                 <div>
                   <h4>Constable ↗</h4>
                   <p>Recursively traces Solana token flows across wallets and exports transaction paths for investigation.</p>
@@ -1428,7 +1651,7 @@
               </a>
 
               <a class="work-row" href="https://github.com/0xNoramiya/sealdex" target="_blank" rel="noopener">
-                <span class="work-number">02</span>
+                <span class="work-number">03</span>
                 <div>
                   <h4>Sealdex ↗</h4>
                   <p>Sealed-bid auction infrastructure on Solana using Anchor and private ephemeral rollups.</p>
@@ -1437,16 +1660,47 @@
               </a>
 
               <a class="work-row" href="https://github.com/0xNoramiya/nightrx" target="_blank" rel="noopener">
-                <span class="work-number">03</span>
+                <span class="work-number">04</span>
                 <div>
                   <h4>NightRx ↗</h4>
                   <p>Privacy-preserving medication eligibility with Midnight Compact contracts, nullifiers, and zero-knowledge credentials.</p>
                 </div>
                 <span class="work-meta">Midnight · ZK · 2026</span>
               </a>
+            </div>
+
+            <div class="work-group">
+              <h3>On-chain and intelligence</h3>
+
+              <a class="work-row" href="https://github.com/0xNoramiya/floop" target="_blank" rel="noopener">
+                <span class="work-number">05</span>
+                <div>
+                  <h4>FLOOP ↗</h4>
+                  <p>An on-chain pet whose survival is tied to real leveraged Flash Trade perpetual positions and MagicBlock state.</p>
+                </div>
+                <span class="work-meta">Solana · Perps · 2026</span>
+              </a>
+
+              <a class="work-row" href="https://github.com/0xNoramiya/suinami" target="_blank" rel="noopener">
+                <span class="work-number">06</span>
+                <div>
+                  <h4>Suinami ↗</h4>
+                  <p>On-chain short-video social with Walrus storage, a Sui Move social graph, and real-SUI gifting on mainnet.</p>
+                </div>
+                <span class="work-meta">Sui · Walrus · 2026</span>
+              </a>
+
+              <a class="work-row" href="https://github.com/0xNoramiya/hearsay" target="_blank" rel="noopener">
+                <span class="work-number">07</span>
+                <div>
+                  <h4>Hearsay ↗</h4>
+                  <p>Tri-modal regulatory intelligence that monitors written, visual, and spoken regulator communications.</p>
+                </div>
+                <span class="work-meta">Compliance · Web data · 2026</span>
+              </a>
 
               <a class="work-row" href="https://github.com/0xNoramiya/shark-fin" target="_blank" rel="noopener">
-                <span class="work-number">04</span>
+                <span class="work-number">08</span>
                 <div>
                   <h4>SHARK-Fin ↗</h4>
                   <p>Threat-intelligence pipeline for Indonesian financial data leaks with risk scoring and PII masking.</p>
@@ -1456,34 +1710,55 @@
             </div>
 
             <div class="work-group">
-              <h3>Clinical and applied AI</h3>
+              <h3>Resilient and clinical AI</h3>
+
+              <a class="work-row" href="https://github.com/0xNoramiya/tardigrade-cs" target="_blank" rel="noopener">
+                <span class="work-number">09</span>
+                <div>
+                  <h4>Tardigrade CS ↗</h4>
+                  <p>Customer-service agent with three-tier failover across model, tool, and provider gateways plus guardrails.</p>
+                </div>
+                <span class="work-meta">Resilience · MCP · 2026</span>
+              </a>
+
+              <a class="work-row" href="https://github.com/0xNoramiya/lookcloser-mcp" target="_blank" rel="noopener">
+                <span class="work-number">10</span>
+                <div>
+                  <h4>LookCloser MCP ↗</h4>
+                  <p>Eleven FHIR R4 tools over HAPI for closed-loop follow-up of incidental imaging findings.</p>
+                </div>
+                <span class="work-meta">FHIR · MCP · Safety · 2026</span>
+              </a>
+
+              <a class="work-row" href="https://github.com/0xNoramiya/agentic-trauma-life-support" target="_blank" rel="noopener">
+                <span class="work-number">11</span>
+                <div>
+                  <h4>Agentic Trauma Life Support ↗</h4>
+                  <p>ATLS primary survey from chest X-ray and vitals using Qwen2.5-VL-72B on AMD MI300X.</p>
+                </div>
+                <span class="work-meta">Clinical vision · AMD · 2026</span>
+              </a>
 
               <a class="work-row" href="https://github.com/0xNoramiya/anamnesa" target="_blank" rel="noopener">
-                <span class="work-number">05</span>
+                <span class="work-number">12</span>
                 <div>
                   <h4>Anamnesa ↗</h4>
                   <p>Citation-first clinical QA over public guidelines with hybrid retrieval, MCP tools, and a verifier loop.</p>
                 </div>
                 <span class="work-meta">Clinical RAG · MCP · 2026</span>
               </a>
-
-              <a class="work-row" href="https://github.com/0xNoramiya/patiently" target="_blank" rel="noopener">
-                <span class="work-number">06</span>
-                <div>
-                  <h4>Patiently ↗</h4>
-                  <p>Multi-agent pre-visit intake and clinic queue system with triage, reminders, and transcription.</p>
-                </div>
-                <span class="work-meta">Healthcare · Agents · 2026</span>
-              </a>
-
-              <div class="writing-link">
-                <span>Repository index</span>
-                <strong>
-                  <a href="https://github.com/0xNoramiya" target="_blank" rel="noopener">github.com/0xNoramiya</a>
-                  <span>↗</span>
-                </strong>
-              </div>
             </div>
+          </div>
+
+          <div class="more-work" aria-label="More GitHub projects">
+            <strong>More on GitHub</strong>
+            <a href="https://github.com/0xNoramiya/scratchml" target="_blank" rel="noopener">ScratchML ↗</a>
+            <a href="https://github.com/0xNoramiya/paperclip-news" target="_blank" rel="noopener">Paperclip News ↗</a>
+            <a href="https://github.com/0xNoramiya/patiently" target="_blank" rel="noopener">Patiently ↗</a>
+            <a href="https://github.com/0xNoramiya/wiqaya" target="_blank" rel="noopener">Wiqaya ↗</a>
+            <a href="https://github.com/0xNoramiya/unsinkable-ship" target="_blank" rel="noopener">Unsinkable Ship ↗</a>
+            <a href="https://github.com/0xNoramiya/humanity-check-ctf" target="_blank" rel="noopener">Humanity Check CTF ↗</a>
+            <a href="https://github.com/0xNoramiya/wgronalds-passmark-tests" target="_blank" rel="noopener">WgRonalds Tests ↗</a>
           </div>
         </div>
       </section>
@@ -1653,6 +1928,8 @@
       </div>
       <div class="footer-links">
         <a href="mailto:rhaikal91@gmail.com">Email ↗</a>
+        <a href="https://x.com/acetaminofenol" target="_blank" rel="noopener">X @acetaminofenol ↗</a>
+        <span>Discord @kudaliar1</span>
         <a href="https://github.com/0xNoramiya" target="_blank" rel="noopener">GitHub ↗</a>
         <a href="https://blog.kudaliar.id" target="_blank" rel="noopener">Writing ↗</a>
         <a href="https://audits.sherlock.xyz/watson/kudaliar" target="_blank" rel="noopener">Sherlock ↗</a>
